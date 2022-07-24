@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { theme } from './theme';
 
 const GlobalStyles = createGlobalStyle`
   *, 
@@ -24,6 +25,7 @@ const GlobalStyles = createGlobalStyle`
 
 body {
   min-height: 100vh;
+  background-color: ${theme.colors.background} ; 
 }
 
   main {

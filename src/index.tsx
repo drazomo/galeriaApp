@@ -5,16 +5,22 @@ import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
 import App from './app';
 import GlobalStyles from './styles/globals';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
+import Navbar from './components/Navbar/Navbar';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <GlobalStyles />
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Provider store={store}>
+        <Navbar />
+        <App />
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
