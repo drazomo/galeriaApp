@@ -25,22 +25,22 @@ export const NavBarContainer = styled.nav`
   }
 
   @media (min-width: 426px) {
-    background-color: ${theme.colors.navBarDestopBkg}};
-    height: 5.5em;
-    box-shadow: rgba(17, 17, 26, 0.03) 0px 1px 0px;
+    background-color: ${theme.colors.navBarDestopBkg};
+  }
+  height: 5.5em;
+  box-shadow: rgba(17, 17, 26, 0.03) 0px 1px 0px;
 
-    .searchBarContainer {
-      position: relative;
-      margin-left: auto;
-      width: 40%;
-      height: 2.4em;
-    }
+  .searchBarContainer {
+    position: relative;
+    margin-left: auto;
+    width: 40%;
+    height: 2.4em;
+  }
 
-    .searchIcn {
-      position: absolute;
-      left: 1em;
-      top: 0.2em;
-    }
+  .searchIcn {
+    position: absolute;
+    left: 1em;
+    top: 0.2em;
   }
 `;
 
@@ -102,6 +102,21 @@ export const NavIconBtn = styled.button`
 `;
 
 export const NavIconItem = styled.div`
+  //https://stackoverflow.com/questions/41425736/change-background-when-radio-button-clicked
+  input[type='radio'] {
+    display: none;
+
+    :checked {
+      + button.cls__icn_btn_photos {
+        background-color: ${theme.colors.selectHoverFotosIcn};
+      }
+
+      + button.cls__icn_btn_heart {
+        background-color: ${theme.colors.selectHoverSavedIcn};
+      }
+    }
+  }
+
   .cls__icn_btn_photos {
     :hover {
       background-color: ${theme.colors.selectHoverFotosIcn};
