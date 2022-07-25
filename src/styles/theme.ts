@@ -1,5 +1,6 @@
 export interface GaleriaTheme {
   colors: {
+    textSecondaryGray: string;
     navBarDestopBkg: string;
     background: string;
     backgroundWhite: string;
@@ -13,6 +14,7 @@ export interface GaleriaTheme {
 
 export const theme: GaleriaTheme = {
   colors: {
+    textSecondaryGray: 'rgb(153,153,153)',
     navBarDestopBkg: 'fcfcfd',
     background: 'rgb(249,250,251)',
     backgroundWhite: '#ffffff',

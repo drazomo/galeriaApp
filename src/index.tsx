@@ -8,6 +8,8 @@ import GlobalStyles from './styles/globals';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Saved from './components/Saved';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -17,8 +19,15 @@ root.render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Provider store={store}>
+        <BrowserRouter>
         <Navbar />
-        <App />
+          <Routes>
+            <Route path='/' element={<App />}>
+              {/* Misc. routes goes here */}
+              <Route path='saved' element={<Saved />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>
