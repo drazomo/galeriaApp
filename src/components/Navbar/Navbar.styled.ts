@@ -5,7 +5,6 @@ export const NavBarContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
 
   width: 100%;
   background-color: inherit;
@@ -18,52 +17,65 @@ export const NavBarContainer = styled.nav`
     height: 2.4em;
   }
 
-  .searchIcn {
+  .searchIcnContainer {
     position: absolute;
     left: 0.5em;
-    top: 0.4em;
+    top: 0.6em;
   }
 
-  @media (min-width: 426px) {
-    background-color: ${theme.colors.navBarDestopBkg};
-  }
-  height: 5.5em;
-  box-shadow: rgba(17, 17, 26, 0.03) 0px 1px 0px;
+  @media (min-width: 768px) {
+    margin: 1em 0 0 auto;
+    .searchBarContainer {
+      width: 508px;
+    }
 
-  .searchBarContainer {
-    position: relative;
-    margin-left: auto;
-    width: 40%;
-    height: 2.4em;
+    .searchIcnContainer {
+      top: 0.1em;
+      left: 1em;
+    }
   }
 
-  .searchIcn {
-    position: absolute;
-    left: 1em;
-    top: 0.2em;
+  @media (min-width: 1024px) {
+    margin: 1em 0 0 auto;
+
+    .searchBarContainer {
+      height: 5.5em;
+      box-shadow: rgba(17, 17, 26, 0.03) 0px 1px 0px;
+      width: 560px;
+      top: 24px;
+    }
+
+    .searchIcnContainer {
+      position: absolute;
+      left: 1em;
+      top: 2px;
+    }
   }
 `;
 
 export const NavSearchBar = styled.input`
   width: 100%;
-  border: none;
+  height: 3em;
   border-radius: 5px;
+  border: none;
 
-  padding-left: 4em;
+  padding-left: 3em;
 
   @media (min-width: 426px) {
     margin-top: -1em;
     width: 100%;
     height: 3.8em;
+
+    padding-left: 4em;
   }
 `;
 
 export const NavIcnContainer = styled.div`
-  margin-left: auto;
+  margin-left: 0.5em;
   display: flex;
 
-  @media (min-width: 426px) {
-    margin-left: 1em;
+  @media (min-width: 768px) {
+    margin-left: 24px;
     margin-right: auto;
   }
 `;

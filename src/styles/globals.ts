@@ -17,20 +17,12 @@ const GlobalStyles = createGlobalStyle`
     font-weight: normal;
   };
 
-  #__next {
+body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: ${theme.colors.background};
 }
-
-body {
-  min-height: 100vh;
-  background-color: ${theme.colors.background} ; 
-}
-
-  main {
-    margin: auto;
-  }
 `;
 
 export default GlobalStyles;
