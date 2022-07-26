@@ -57,7 +57,7 @@ const Navbar = () => {
                 </div>
               </Link>
             </NavIconBtn>
-            <NavIconTitle>Theme</NavIconTitle>
+            <NavIconTitle style={{ marginLeft: '-7px'}}>Theme</NavIconTitle>
           </NavIconItem>
       </NavIcnContainer>
     </NavBarContainer>
