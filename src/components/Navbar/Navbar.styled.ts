@@ -41,7 +41,7 @@ export const NavBarContainer = styled.nav`
     .searchBarContainer {
       height: 5.5em;
       box-shadow: rgba(17, 17, 26, 0.03) 0px 1px 0px;
-      width: 560px;
+      width: 644px;
       top: 24px;
     }
 
