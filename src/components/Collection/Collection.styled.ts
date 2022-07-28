@@ -7,11 +7,10 @@ export const CardBase = styled.div`
   align-items: flex-end;
   background-color: ${theme.colors.textSecondaryGray};
   margin-left: 1em;
-  height: 12em;
+  height: 234px;
   border-radius: 10px;
   cursor: pointer;
-
-  min-width: 9em;
+  min-width: 160px;
 
   :last-child {
     margin-right: 1em;
