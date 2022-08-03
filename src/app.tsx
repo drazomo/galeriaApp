@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import Masonry from 'react-masonry-css'
 import { CardCollectionContainer } from './components/Collection/Collection.styled'
 import CollectionCard from './components/Collection/CollectionCards'
 import { MosaicContainer, MosaicGrid } from './components/Mosaic/Mosaic.styled'
 import MosaicTile from './components/Mosaic/MosaicTile'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 const tester = ['add collection', 'cars', 'sports', 'vacations', 'food']
-
-//mJ0Fo7arIE9bwe0i88zHw9auKzPSqvWZlRr2oV4j03w
 
 interface ImgProperties {
   urls: {
@@ -28,7 +27,7 @@ const App = () => {
   const fetchImages = async () => {
     const res = await fetch(`https://api.unsplash.com/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
     const data = await res.json();
-    setImages([...images, ...data])
+    setImages(prevImages => [...prevImages, ...data])
     setPage(page + 1);
   }
 
@@ -37,24 +36,24 @@ const App = () => {
       <CardCollectionContainer>
         {
           tester.map((cat) => (
-            <CollectionCard catName={cat}/>
+            <CollectionCard catName={cat} key={`collection_${cat}`}/>
           ))
         }
       </CardCollectionContainer>
+
       <MosaicContainer>
-        <InfiniteScroll dataLength={images?.length} next={fetchImages} hasMore={true} loader={<></>}>
-          <MosaicGrid>
+      <InfiniteScroll dataLength={images?.length} next={fetchImages} hasMore={true} loader={<></>}>
+        <MosaicGrid>
+          <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {
               images?.map(img => (
-                <>
-                <MosaicTile image={img.urls.small} key={img.id} alt={img?.description} />
-                </>
+                <MosaicTile image={img.urls.small} alt={img?.description} key={img.id}/>
               ))
             }
-          </MosaicGrid>
-        </InfiniteScroll>
+          </Masonry>
+        </MosaicGrid>
+      </InfiniteScroll>
       </MosaicContainer>
-      
     </>
   )
 }

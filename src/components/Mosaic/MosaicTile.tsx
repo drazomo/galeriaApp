@@ -6,12 +6,23 @@ interface MosaicTileProps {
   alt?: string;
 }
 
-const MosaicTile = ({ image, alt }: MosaicTileProps) => {
+{/* 
+const MosaicTile: React.ForwardRefExoticComponent<MosaicTileProps> = React.forwardRef(({ image, alt }, ref: React.Ref<HTMLDivElement>) => {
   return (
-    <MosaicBody>
+    <MosaicBody ref={ref}>
       <img src={image} alt={alt} />
     </MosaicBody>
   )
-}
+});
+*/}
+
+
+const MosaicTile= ({ image, alt }: MosaicTileProps) => {
+  return (
+    <MosaicBody >
+      <img src={image} alt={alt} />
+    </MosaicBody>
+  )
+};
 
 export default MosaicTile;

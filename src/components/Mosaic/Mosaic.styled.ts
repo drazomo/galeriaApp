@@ -1,13 +1,23 @@
 import styled from 'styled-components';
 
 export const MosaicGrid = styled.div`
-  columns: 3 100px;
-  column-gap: 1em;
+  width: 884px;
 
-  margin-top: 1em;
-  padding: 0;
-  background-color: gray;
-  width: 864px;
+  .my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+  }
+  .my-masonry-grid_column {
+    padding-left: 1em; /* gutter size */
+    background-clip: padding-box;
+  }
+
+  /* Style your items */
+  .my-masonry-grid_column > div {
+    /* change div to reference your elements you put in <Masonry> */
+    margin-bottom: 1em;
+  }
 `;
 
 export const MosaicBody = styled.div`
@@ -20,6 +30,8 @@ export const MosaicBody = styled.div`
 `;
 
 export const MosaicContainer = styled.div`
+  margin-top: 2em;
+  margin-left: -6px;
   display: flex;
   justify-content: center;
   width: 100%;
