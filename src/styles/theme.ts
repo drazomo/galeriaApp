@@ -10,12 +10,6 @@ export interface GaleriaTheme {
     btnBlue: string;
     btnLtBlue: string;
   }
-  breakpoints: {
-    sm: 'screen and (max-width: 640px)',
-    md: 'screen and (max-width: 768px)',
-    lg: 'screen and (max-width: 1024px)',
-    xl: 'screen and (max-width: 1280px)'
-  }
 }
 
 export const theme: GaleriaTheme = {
@@ -30,10 +24,25 @@ export const theme: GaleriaTheme = {
     btnBlue: 'rgb(24,119,242)',
     btnLtBlue: 'rgb(213,230,252)',
   },
-  breakpoints: {
-    sm: 'screen and (max-width: 640px)',
-    md: 'screen and (max-width: 768px)',
-    lg: 'screen and (max-width: 1024px)',
-    xl: 'screen and (max-width: 1280px)'
-  },
+};
+
+const size = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '425px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1440px',
+  desktop: '2560px'
+}
+
+export const device = {
+  mobileS: `(min-width: ${size.mobileS})`,
+  mobileM: `(min-width: ${size.mobileM})`,
+  mobileL: `(min-width: ${size.mobileL})`,
+  tablet: `(min-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.laptop})`,
+  laptopL: `(min-width: ${size.laptopL})`,
+  desktop: `(min-width: ${size.desktop})`,
+  desktopL: `(min-width: ${size.desktop})`
 };

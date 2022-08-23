@@ -1,8 +1,7 @@
 import styled from 'styled-components';
+import { device } from '../../styles/theme';
 
 export const MosaicGrid = styled.div`
-  width: 884px;
-
   .my-masonry-grid {
     display: -webkit-box; /* Not needed if autoprefixing */
     display: -ms-flexbox; /* Not needed if autoprefixing */
@@ -17,6 +16,22 @@ export const MosaicGrid = styled.div`
   .my-masonry-grid_column > div {
     /* change div to reference your elements you put in <Masonry> */
     margin-bottom: 1em;
+  }
+
+  @media ${device.mobileS}{
+    width: 320px;
+  }
+
+  @media ${device.mobileM}{
+    width: 375px;
+  }
+
+  @media ${device.tablet}{
+    width: 768px;
+  }
+
+  @media ${device.laptop}{
+    width: 884px;
   }
 `;
 

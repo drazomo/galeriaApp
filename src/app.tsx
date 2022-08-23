@@ -31,6 +31,11 @@ const App = () => {
     setPage(page + 1);
   }
 
+  const breakpointColumnsObj = {
+    default: 3,
+    700: 2,
+  };
+
   return (
     <>
       <CardCollectionContainer>
@@ -44,7 +49,7 @@ const App = () => {
       <MosaicContainer>
       <InfiniteScroll dataLength={images?.length} next={fetchImages} hasMore={true} loader={<></>}>
         <MosaicGrid>
-          <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+          <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {
               images?.map(img => (
                 <MosaicTile image={img.urls.small} alt={img?.description} key={img.id}/>
