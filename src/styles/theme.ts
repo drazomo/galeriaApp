@@ -9,7 +9,13 @@ export interface GaleriaTheme {
     selectHoverSavedIcn: string;
     btnBlue: string;
     btnLtBlue: string;
-  };
+  }
+  breakpoints: {
+    sm: 'screen and (max-width: 640px)',
+    md: 'screen and (max-width: 768px)',
+    lg: 'screen and (max-width: 1024px)',
+    xl: 'screen and (max-width: 1280px)'
+  }
 }
 
 export const theme: GaleriaTheme = {
@@ -23,5 +29,11 @@ export const theme: GaleriaTheme = {
     selectHoverSavedIcn: 'rgb(255,180,188)',
     btnBlue: 'rgb(24,119,242)',
     btnLtBlue: 'rgb(213,230,252)',
+  },
+  breakpoints: {
+    sm: 'screen and (max-width: 640px)',
+    md: 'screen and (max-width: 768px)',
+    lg: 'screen and (max-width: 1024px)',
+    xl: 'screen and (max-width: 1280px)'
   },
 };
