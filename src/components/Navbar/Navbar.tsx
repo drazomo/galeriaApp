@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { NavBarContainer, NavIcnContainer, NavIconBtn, NavIconItem, NavIconTitle, NavSearchBar } from './Navbar.styled';
 import {ReactComponent as CameraIcon} from './menu_cameraIcon.svg';
 import {ReactComponent as HeartIcon} from './menu_heartIcon.svg';
@@ -9,11 +9,12 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const path = useLocation().pathname
-  const [checked, setChecked] = useState(path === '/saved' ? 'saved': 'photos')
+  const [checked, setChecked] = useState(path === '/saved' ? 'saved': '/themes' ? 'themes':'photos')
 
   const iconButtons = [
     {sauce: <CameraIcon />, alt: 'Camera Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
     {sauce: <HeartIcon />, alt: 'Heart Icon', name: 'Saved', className: 'cls__icn_btn_heart', link: '/saved'},
+    {sauce: <ThemeIcon />, alt: 'Theme Icon', name: 'Themes', className: 'cls__icn_btn_theme', link: '/themes'}
   ]
 
   const handleIconClick = (value: string) => {
@@ -38,27 +39,17 @@ const Navbar = () => {
               id={name.toLowerCase()} 
               checked={checked === name.toLowerCase() && true}
             />
-            <NavIconBtn key={`icnBtn_${alt.replace(/\w/g, '')}`} className={className} onClick={() => handleIconClick(name.toLowerCase())}>
-              <Link to={link}>
-                <div style={{ width: '28px', height: '25px'}}>
-                  {sauce}
-                </div>
-              </Link>
-            </NavIconBtn>
+            <Link to={link}>
+              <NavIconBtn key={`icnBtn_${alt.replace(/\w/g, '')}`} className={className} onClick={() => handleIconClick(name.toLowerCase())}>
+                  <div style={{ width: '28px', height: '25px'}}>
+                    {sauce}
+                  </div>
+              </NavIconBtn>
+            </Link>
             <NavIconTitle>{name}</NavIconTitle>
           </NavIconItem>
         ))
         }
-          <NavIconItem>
-            <NavIconBtn key={`icnBtn_theme`} className='cls__icn_btn_theme'>
-              <Link to={path}>
-                <div style={{ width: '28px', height: '25px'}}>
-                  <ThemeIcon />
-                </div>
-              </Link>
-            </NavIconBtn>
-            <NavIconTitle style={{ marginLeft: '-7px'}}>Theme</NavIconTitle>
-          </NavIconItem>
       </NavIcnContainer>
     </NavBarContainer>
   )

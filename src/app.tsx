@@ -2,13 +2,9 @@ import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry from 'react-masonry-css'
 import { useAppDispatch, useAppSelector } from './app/hooks'
-import { CardCollectionContainer } from './components/Collection/Collection.styled'
-import CollectionCard from './components/Collection/CollectionCards'
 import { MosaicContainer, MosaicGrid } from './components/Mosaic/Mosaic.styled'
 import MosaicTile from './components/Mosaic/MosaicTile'
 import { fetchFotos, nextPage } from './features/feed'
-
-const tester = ['add collection', 'cars', 'sports', 'vacations', 'food']
 
 const App = () => {
   const dispatch = useAppDispatch()
@@ -30,14 +26,6 @@ const App = () => {
 
   return (
     <>
-      <CardCollectionContainer>
-        {
-          tester.map((cat) => (
-            <CollectionCard catName={cat} key={`collection_${cat}`}/>
-          ))
-        }
-      </CardCollectionContainer>
-
       <MosaicContainer>
       <InfiniteScroll dataLength={data?.length} next={fetchImages} hasMore={true} loader={<></>}>
         <MosaicGrid>

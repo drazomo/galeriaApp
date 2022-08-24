@@ -10,6 +10,7 @@ import { theme } from './styles/theme';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Saved from './components/Saved';
+import Collections from './components/Collections';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -22,10 +23,10 @@ root.render(
         <BrowserRouter>
         <Navbar />
           <Routes>
-            <Route path='/' element={<App />}>
+            <Route path='/' element={<App />} />
               {/* Misc. routes goes here */}
-              <Route path='saved' element={<Saved />} />
-            </Route>
+              <Route path='/saved' element={<Saved />} />
+              <Route path='/themes' element={<Collections />} />
           </Routes>
         </BrowserRouter>
       </Provider>
