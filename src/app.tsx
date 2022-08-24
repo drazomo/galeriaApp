@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry from 'react-masonry-css'
+import { useAppDispatch, useAppSelector } from './app/hooks'
 import { CardCollectionContainer } from './components/Collection/Collection.styled'
 import CollectionCard from './components/Collection/CollectionCards'
 import { MosaicContainer, MosaicGrid } from './components/Mosaic/Mosaic.styled'
 import MosaicTile from './components/Mosaic/MosaicTile'
+import { fetchFotos, nextPage } from './features/feed'
 
 const tester = ['add collection', 'cars', 'sports', 'vacations', 'food']
 
-interface ImgProperties {
-  urls: {
-    small: string;
-  };
-  id: string;
-  description?: string;
-}
-
 const App = () => {
-  const [images, setImages] = useState<ImgProperties[]>([]);
-  const [page, setPage] = useState(1);
+  const dispatch = useAppDispatch()
+  const {data, page} = useAppSelector(state => state.feed)
 
   useEffect(() => {
     fetchImages();
   }, []);
 
   const fetchImages = async () => {
-    const res = await fetch(`https://api.unsplash.com/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
-    const data = await res.json();
-    setImages(prevImages => [...prevImages, ...data])
-    setPage(page + 1);
+    dispatch(nextPage())
+    dispatch(fetchFotos(page))
   }
 
   const breakpointColumnsObj = {
@@ -47,11 +39,11 @@ const App = () => {
       </CardCollectionContainer>
 
       <MosaicContainer>
-      <InfiniteScroll dataLength={images?.length} next={fetchImages} hasMore={true} loader={<></>}>
+      <InfiniteScroll dataLength={data?.length} next={fetchImages} hasMore={true} loader={<></>}>
         <MosaicGrid>
           <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {
-              images?.map(img => (
+              data?.map(img => (
                 <MosaicTile image={img.urls.small} alt={img?.description} key={img.id}/>
               ))
             }

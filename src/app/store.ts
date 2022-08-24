@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import feed from '../features/feed'
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    feed
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
