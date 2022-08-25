@@ -9,10 +9,10 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const path = useLocation().pathname
-  const [checked, setChecked] = useState(path === '/saved' ? 'saved': '/themes' ? 'themes':'photos')
+  const [checked, setChecked] = useState(path === '/saved' ? 'saved': '/' ? 'photos':'themes')
 
   const iconButtons = [
-    {sauce: <CameraIcon />, alt: 'Camera Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
+    {sauce: <CameraIcon />, alt: 'Cam Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
     {sauce: <HeartIcon />, alt: 'Heart Icon', name: 'Saved', className: 'cls__icn_btn_heart', link: '/saved'},
     {sauce: <ThemeIcon />, alt: 'Theme Icon', name: 'Themes', className: 'cls__icn_btn_theme', link: '/themes'}
   ]
