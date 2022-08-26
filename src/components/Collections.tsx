@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { CardCollectionContainer } from './Collection/Collection.styled'
 import CollectionCard from './Collection/CollectionCards'
+import LrgCollectionCard from './LrgCollectionCard/LrgCollectionCard'
+
 interface CollectionCardProps {
   title: string
   id: string
@@ -30,7 +32,12 @@ const Collections = () => {
         <CollectionCard catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
       ))
     }
-  </CardCollectionContainer></>
+  </CardCollectionContainer>
+
+  <LrgCollectionCard>
+
+  </LrgCollectionCard>
+  </>
   )
 }
 
