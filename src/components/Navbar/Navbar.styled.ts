@@ -56,7 +56,7 @@ export const NavBarContainer = styled.nav`
 export const NavSearchBar = styled.input`
   width: 100%;
   height: 3em;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
 
   padding-left: 3em;
@@ -97,7 +97,7 @@ export const NavIconTitle = styled.div`
 export const NavIconBtn = styled.button`
   cursor: pointer;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 0.5em;
   background-color: ${theme.colors.backgroundWhite};
 
