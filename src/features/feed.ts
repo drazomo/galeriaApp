@@ -1,21 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { SliceInitState } from "../app/store";
 
 export interface ImgProperties {
   urls: {
-    small: string;
+    small?: string;
+    regular?: string;
   };
   id: string;
   description?: string;
 }
 
-interface FeedSliceInitState {
-  data: ImgProperties[]
-  isLoading: boolean
-  hasError: boolean
-  page: number
+export interface UnsplashDataProps extends ImgProperties {
+  links: {
+    self: string,
+    download: string
+  },
+  likes: number,
+  user: {
+    username: string,
+    profile_image: {
+      large: string
+    }
+  },
 }
 
-const initialState: FeedSliceInitState = {
+const initialState: SliceInitState<UnsplashDataProps> = {
   data: [],
   isLoading: false,
   hasError: false,
