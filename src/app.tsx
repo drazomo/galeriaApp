@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Masonry from 'react-masonry-css'
 import { useAppDispatch, useAppSelector } from './app/hooks'
@@ -31,8 +31,8 @@ const App = () => {
         <MosaicGrid>
           <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {
-              data?.map(img => (
-                <MosaicTile image={img.urls.small} alt={img?.description} key={img.id}/>
+              data.map(img => (
+                <MosaicTile image={img.urls.small as string} alt={img?.description} key={img.id}/>
               ))
             }
           </Masonry>

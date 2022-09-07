@@ -2,12 +2,13 @@ import React from 'react'
 import { CardBase, CardTitle } from './Collection.styled'
 
 interface CollectionCardProps {
-  catName: string;
+  catName: string
+  imgUrl: string
 }
 
-const CollectionCard = ({catName}: CollectionCardProps) => {
+const CollectionCard = ({catName, imgUrl}: CollectionCardProps) => {
   return (
-    <CardBase>
+    <CardBase style={{backgroundImage: `url("${imgUrl}")`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
       <CardTitle>{catName}</CardTitle>
     </CardBase>
   )

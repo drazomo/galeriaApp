@@ -1,9 +1,18 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import feed from '../features/feed'
+import showcaseFeed from "../features/showcaseFeed";
+
+export interface SliceInitState<T> {
+  data: T[]
+  isLoading: boolean
+  hasError: boolean
+  page: number
+}
 
 export const store = configureStore({
   reducer: {
-    feed
+    feed,
+    showcaseFeed
   },
 });
 

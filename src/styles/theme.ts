@@ -9,6 +9,7 @@ export interface GaleriaTheme {
     selectHoverSavedIcn: string;
     btnBlue: string;
     btnLtBlue: string;
+    heartColor: 'rgb(255,116,129)';
   }
 }
 
@@ -23,6 +24,7 @@ export const theme: GaleriaTheme = {
     selectHoverSavedIcn: 'rgb(255,180,188)',
     btnBlue: 'rgb(24,119,242)',
     btnLtBlue: 'rgb(213,230,252)',
+    heartColor: 'rgb(255,116,129)'
   },
 };
 
