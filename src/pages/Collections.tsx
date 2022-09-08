@@ -1,11 +1,13 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { fetchFotos, nextPage, UnsplashDataProps } from '../features/feed'
+import { fetchFotos, nextPage } from '../features/feed'
 import { CollectionCardProps, fetchShowcaseFeed } from '../features/showcaseFeed'
-import { CardCollectionContainer } from './Collection/Collection.styled'
-import CollectionCard from './Collection/CollectionCards'
-import LrgCollectionCard from './LrgCollectionCard/LrgCollectionCard'
+import { CardCollectionContainer } from '../components/Collection/Collection.styled'
+import CollectionCard from '../components/Collection/CollectionCards'
+import LrgCollectionCard from '../components/LrgCollectionCard/LrgCollectionCard'
+import PicModal from '../components/PicModal/PicModal'
+import ExploreImage from '../components/ExploreImage'
 
 const Collections = () => {
   const dispatch = useAppDispatch()
@@ -23,6 +25,7 @@ const Collections = () => {
     dispatch(fetchFotos(page))
   }
 
+
   return (
     <>
     <CardCollectionContainer>
@@ -35,14 +38,15 @@ const Collections = () => {
     
   <InfiniteScroll dataLength={data?.length} next={fetchImages} hasMore={true} loader={<></>}>
     {
-      data?.map(({description, likes, urls, links, user, id}: UnsplashDataProps) => (
-        <LrgCollectionCard perfilImgUrl={user.profile_image.large} likes={likes} profileLink={links.self} user={user.username} description={description} id={id} key={id}>
-          <img src={urls.regular} alt={description} />
-        </LrgCollectionCard>
-      ))
-    }
+      data?.map((imgData) => {
+        return (
+          <ExploreImage
+            key={imgData.id} 
+            item={imgData}
+          />
+      )}
+    )}
   </InfiniteScroll>
-  
   </>
   )
 }
