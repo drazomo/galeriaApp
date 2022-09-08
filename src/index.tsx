@@ -9,8 +9,8 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Saved from './components/Saved';
-import Collections from './components/Collections';
+import Saved from './pages/Saved';
+import Collections from './pages/Collections';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
