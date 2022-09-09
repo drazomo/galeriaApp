@@ -34,12 +34,12 @@ const LrgCollectionCard = (props: LrgPicProps) => {
             backgroundRepeat: 'no-repeat', 
             backgroundPosition: 'center'}} 
           />
-          <div className='usrInfo'>
+         <div className='usrInfo'>
             <p>{item.user.username}</p>
             <p>12 hours ago</p>
           </div>
         </InfoUsrContainer>
-        <div className='detailsDiv' onClick={onDetailsClick}>
+        <div className='detailsDiv' onClick={onDetailsClick} style={{ cursor: 'pointer' }}>
           {close ? <CrossIcn />  : <DetailDots />}
         </div>
       </InfoBox>
@@ -66,7 +66,7 @@ const LrgCollectionCard = (props: LrgPicProps) => {
       </CollectionButtonBar>
       { download &&
       <DownloadContainer>
-        <DownloadBtn>
+        <DownloadBtn href={item.links.download} target="_blank">
           <DownloadIcn/> <h3>Download</h3>
         </DownloadBtn>
       </DownloadContainer>

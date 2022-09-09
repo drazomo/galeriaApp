@@ -46,7 +46,7 @@ export const DownloadContainer = styled.div`
   margin-bottom: 2em;
 `;
 
-export const DownloadBtn = styled.button`
+export const DownloadBtn = styled.a`
   cursor: pointer;
   width: 35%;
   height: 35px;
