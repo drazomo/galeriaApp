@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import { CollectionButtonBar, CollectionCardContainer, defaultImageContainerCSS, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
+import { DownloadBtn, DownloadContainer } from '../PicModal/PicModal.styled';
+import { UnsplashDataProps } from '../../features/feed';
 import {ReactComponent as BrokenHeart} from '../../images/Iconly-Broken-Heart.5896217f.svg';
 import {ReactComponent as Stared} from '../../images/Iconly-Filled-Star.ff1773db.svg';
 import {ReactComponent as BrokenStar} from '../../images/Iconly-Broken-Star.3c2feada.svg';
 import {ReactComponent as DetailDots} from '../../images/Icon-show-detail.08802497.svg';
 import {ReactComponent as DownloadIcn} from '../../images/Icon-feather-download.f34f10a8.svg';
-import { CollectionButtonBar, CollectionCardContainer, defaultImageContainerCSS, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
-import { DownloadBtn, DownloadContainer } from '../PicModal/PicModal.styled';
-import { UnsplashDataProps } from '../../features/feed';
+import {ReactComponent as CrossIcn} from '../../images/Icon-metro-cross.svg';
 
 export interface LrgPicProps {
   item: UnsplashDataProps
@@ -14,13 +15,12 @@ export interface LrgPicProps {
   download?: boolean
   restrict?: boolean
   portrait?: boolean
+  close?: boolean
+  onDetailsClick: () => void
 }
 
-const DEFAULT_LANDSCAPE_HEIGHT = "223px";
-const DEFAULT_PORTRAIT_HEIGHT = "325px";
-
 const LrgCollectionCard = (props: LrgPicProps) => {
-  const {item, children, download} = props 
+  const {item, children, download, close, onDetailsClick} = props 
   const [stared, setStared] = useState(false);
 
   return (
@@ -39,8 +39,8 @@ const LrgCollectionCard = (props: LrgPicProps) => {
             <p>12 hours ago</p>
           </div>
         </InfoUsrContainer>
-        <div className='detailsDiv'>
-          <DetailDots />
+        <div className='detailsDiv' onClick={onDetailsClick}>
+          {close ? <CrossIcn />  : <DetailDots />}
         </div>
       </InfoBox>
       {item.description &&

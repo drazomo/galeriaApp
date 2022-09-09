@@ -20,10 +20,18 @@ const ExploreImage = ({item, portrait}:ExploreImageProps) => {
     setModalOpen(false);
   };
 
+  const handleModalDetailsClick = () => {
+    setModalOpen(false);
+  }
+
+  const handleDetailsClick = () => {
+    setModalOpen(true);
+  }
+
   return (
     <>
-    <PicModal key={item.id} item={item} onClose={closeModal} open={modalOpen}/>
-    <LrgCollectionCard key={item.id} item={item} portrait={item.width < item.height}>
+    <PicModal key={item.id} item={item} onClose={closeModal} open={modalOpen} onDetailsClick={handleModalDetailsClick}/>
+    <LrgCollectionCard key={item.id} item={item} portrait={item.width < item.height} onDetailsClick={handleDetailsClick}>
       <ImgArea 
         src={item.urls.regular} 
         alt={item.description}
