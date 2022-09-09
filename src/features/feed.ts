@@ -22,6 +22,8 @@ export interface UnsplashDataProps extends ImgProperties {
       large: string
     }
   },
+  width: number,
+  height: number
 }
 
 const initialState: SliceInitState<UnsplashDataProps> = {

@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { fetchFotos, nextPage } from '../features/feed'
 import { CollectionCardProps, fetchShowcaseFeed } from '../features/showcaseFeed'
 import { CardCollectionContainer } from '../components/Collection/Collection.styled'
 import CollectionCard from '../components/Collection/CollectionCards'
-import LrgCollectionCard from '../components/LrgCollectionCard/LrgCollectionCard'
-import PicModal from '../components/PicModal/PicModal'
 import ExploreImage from '../components/ExploreImage'
 
 const Collections = () => {
@@ -34,21 +32,22 @@ const Collections = () => {
         <CollectionCard catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
       ))
     }
-  </CardCollectionContainer>
-    
-  <InfiniteScroll dataLength={data?.length} next={fetchImages} hasMore={true} loader={<></>}>
-    {
-      data?.map((imgData) => {
-        return (
-          <ExploreImage
-            key={imgData.id} 
-            item={imgData}
-          />
+    </CardCollectionContainer>
+      
+    <InfiniteScroll dataLength={data?.length} next={fetchImages} hasMore={true} loader={<></>}>
+      {
+        data?.map((imgData) => {
+          return (
+            <ExploreImage
+              key={imgData.id} 
+              item={imgData}
+              portrait={imgData.width < imgData.height}
+            />
+        )}
       )}
-    )}
-  </InfiniteScroll>
-  </>
-  )
-}
+    </InfiniteScroll>
+    </>
+    )
+  }
 
 export default Collections
