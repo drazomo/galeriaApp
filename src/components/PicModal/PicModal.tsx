@@ -6,12 +6,12 @@ import { ModalBkg, ModalContainer, ModalImgArea} from './PicModal.styled'
 
 interface PicModalProps {
   onClose: () => void
+  onDetailsClick: () => void
   open: boolean
-  restrict?: boolean
   item: UnsplashDataProps
 }
 
-const PicModal = ({onClose, open, item, restrict}: PicModalProps) => {
+const PicModal = ({onClose, open, item, onDetailsClick}: PicModalProps) => {
 
   if (!open) return null;
 
@@ -19,7 +19,7 @@ const PicModal = ({onClose, open, item, restrict}: PicModalProps) => {
     <>
     <ModalBkg onClick={onClose}/>
     <ModalContainer>
-    <LrgCollectionCard item={item} download key={`modal_${item.id}`}>
+    <LrgCollectionCard item={item} download key={`modal_${item.id}`} close onDetailsClick={onDetailsClick}>
       <ModalImgArea 
         src={item.urls.regular} 
         alt={item.description}
