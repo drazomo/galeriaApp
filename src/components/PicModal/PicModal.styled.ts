@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../styles/theme";
 
 export const ModalBkg = styled.div`
@@ -37,13 +37,6 @@ export const ModalContainer = styled.div`
   padding-right: 37px;
 `;
 
-export const ModalImg = styled.img`
-  width: 100%;
-  height: 100%;
-  max-height: 600px;
-  border-radius: 8px;
-  min-width: 600px;
-`;
 
 export const DownloadContainer = styled.div`
   width: 100%;
@@ -66,4 +59,13 @@ export const DownloadBtn = styled.button`
 
   background-color: ${theme.colors.btnBlue};
   color: ${theme.colors.backgroundWhite};
+`;
+
+export const ModalImgArea = styled.img`
+  width: 100%;
+  height: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 8px;
+  min-width: 600px;
 `;

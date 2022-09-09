@@ -4,7 +4,7 @@ import {ReactComponent as Stared} from '../../images/Iconly-Filled-Star.ff1773db
 import {ReactComponent as BrokenStar} from '../../images/Iconly-Broken-Star.3c2feada.svg';
 import {ReactComponent as DetailDots} from '../../images/Icon-show-detail.08802497.svg';
 import {ReactComponent as DownloadIcn} from '../../images/Icon-feather-download.f34f10a8.svg';
-import { CollectionButtonBar, CollectionCardContainer, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
+import { CollectionButtonBar, CollectionCardContainer, defaultImageContainerCSS, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
 import { DownloadBtn, DownloadContainer } from '../PicModal/PicModal.styled';
 import { UnsplashDataProps } from '../../features/feed';
 
@@ -12,7 +12,12 @@ export interface LrgPicProps {
   item: UnsplashDataProps
   children: React.ReactNode
   download?: boolean
+  restrict?: boolean
+  portrait?: boolean
 }
+
+const DEFAULT_LANDSCAPE_HEIGHT = "223px";
+const DEFAULT_PORTRAIT_HEIGHT = "325px";
 
 const LrgCollectionCard = (props: LrgPicProps) => {
   const {item, children, download} = props 
@@ -43,7 +48,9 @@ const LrgCollectionCard = (props: LrgPicProps) => {
           <p>{item.description}</p>
         </div>
         }
-      <LrgImgContainer>
+      <LrgImgContainer
+        imageContainerCSS={defaultImageContainerCSS}
+      >
           {children}
       </LrgImgContainer>
       <CollectionButtonBar>
