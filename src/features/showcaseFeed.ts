@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { SliceInitState } from "../app/store";
 
 export interface CollectionCardProps {
   title: string
@@ -6,16 +7,12 @@ export interface CollectionCardProps {
   preview_photos: any
 }
 
-interface ShowcaseFeedSliceInitState {
-  data: CollectionCardProps[]
-  isLoading: boolean
-  hasError: boolean 
-}
 
-const initialState: ShowcaseFeedSliceInitState  = {
+const initialState: SliceInitState<CollectionCardProps>  = {
   data: [],
   isLoading: false,
   hasError: false,
+  page: 1
 }
 
 export const fetchShowcaseFeed = createAsyncThunk('showcaseFeed/fetchShowcaseFeed', async () => {

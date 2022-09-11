@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
-import { fetchFotos, nextPage } from '../features/feed'
+import { fetchFotos, nextPage, UnsplashDataProps } from '../features/feed'
 import { CollectionCardProps, fetchShowcaseFeed } from '../features/showcaseFeed'
 import { CardCollectionContainer } from '../components/Collection/Collection.styled'
 import CollectionCard from '../components/Collection/CollectionCards'
@@ -28,15 +28,15 @@ const Collections = () => {
     <>
     <CardCollectionContainer>
     {
-      showcase.map(({title, id, preview_photos}: CollectionCardProps) => (
+      (showcase as CollectionCardProps[]).map(({title, id, preview_photos}: CollectionCardProps) => (
         <CollectionCard catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
       ))
     }
     </CardCollectionContainer>
       
-    <InfiniteScroll dataLength={data?.length} next={fetchImages} hasMore={true} loader={<></>}>
+    <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={fetchImages} hasMore={true} loader={<></>}>
       {
-        data?.map((imgData) => {
+        (data as UnsplashDataProps[])?.map((imgData) => {
           return (
             <ExploreImage
               key={imgData.id} 

@@ -1,9 +1,10 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import feed from '../features/feed'
 import showcaseFeed from "../features/showcaseFeed";
+import userFeed from "../features/userFeed";
 
 export interface SliceInitState<T> {
-  data: T[]
+  data: T[] | T
   isLoading: boolean
   hasError: boolean
   page: number
@@ -12,7 +13,8 @@ export interface SliceInitState<T> {
 export const store = configureStore({
   reducer: {
     feed,
-    showcaseFeed
+    showcaseFeed,
+    userFeed
   },
 });
 

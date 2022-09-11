@@ -23,7 +23,7 @@ const ExploreImage = ({item, grid}:ExploreImageProps) => {
   return (
     <>
     <PicModal key={item.id} item={item} onClose={closeModal} open={modalOpen}/>
-    <LrgCollectionCard key={item.id} item={item} >
+    <LrgCollectionCard key={item.id} item={item}>
       {grid 
       ? 
       <ImgGridArea 

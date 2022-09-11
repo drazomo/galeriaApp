@@ -1,27 +1,30 @@
 import React from 'react'
+import { UnsplashUsrDataProps } from '../../features/userFeed'
 import { StatBox, StatCategory, StatContainer, StatNumber, UserInfoContainer, UserLink, UserName, UserPhoto } from './ImgAndUser.styled'
 
-const ImgAndUser = () => {
+interface ImgAndUserProps {
+  item: UnsplashUsrDataProps
+}
+
+const ImgAndUser = ({item}: ImgAndUserProps) => {
+  const stats = [{Posts : item.total_photos}, {Followers: item.followers_count}, {Following: item.following_count}]
+
   return (
     <UserInfoContainer>
-      <UserPhoto />
-      <UserName>Annie Spratt</UserName>
-      <UserLink href="https://www.anniespratt.com/">https://www.anniespratt.com</UserLink>
+      <UserPhoto src={item.profile_image.large}/>
+      <UserName>{`${item.name}`}</UserName>
+      <UserLink href={item.portfolio_url} >{item.portfolio_url}</UserLink>
       <StatContainer>
-        <StatBox>
-          <StatNumber>16.77k</StatNumber>
-          <StatCategory>Photos</StatCategory>
-        </StatBox>
-
-        <StatBox>
-          <StatNumber>16.77k</StatNumber>
-          <StatCategory>Photos</StatCategory>
-        </StatBox>
-
-        <StatBox>
-          <StatNumber>16.77k</StatNumber>
-          <StatCategory>Photos</StatCategory>
-        </StatBox>
+        {
+          stats.map((stat, idx) => (
+            <StatBox key={`stat_${idx}`}>
+              <StatNumber>{ Object.values(stat) }</StatNumber>
+              <StatCategory>
+                { Object.keys(stat) }
+              </StatCategory>
+            </StatBox>
+          ))
+        }
       </StatContainer>
   </UserInfoContainer>
   )
