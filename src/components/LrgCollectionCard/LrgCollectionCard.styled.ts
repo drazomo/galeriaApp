@@ -4,13 +4,6 @@ import { theme } from '../../styles/theme';
 interface DisplayImageProps {
   imageCSS?: {}
 }
-interface LarImgContainerProp {
-  imageContainerCSS: {}
-}
-
-interface DefaultImgContainerCssProps {
-  minHeight?: string
-}
 
 export const CollectionCardContainer = styled.div`
   display: flex;
@@ -59,6 +52,24 @@ export const ImgArea = styled.img<DisplayImageProps>`
   ${(props) => props.imageCSS}
 `;
 
+export const Grid = styled.div`
+  display: grid;
+  margin-top: 2em;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 2em;
+  grid-column-gap: 2em;
+`;
+
+export const ImgGridArea = styled.img<DisplayImageProps>`
+  border-radius: 8px;
+  width: 265px;
+  height: 265px;
+  background-color: gray;
+
+  ${(props) => props.imageCSS}
+`;
+
 export const defaultImageCSS = css`
   width: 100%;
   height: 100%;
@@ -66,24 +77,7 @@ export const defaultImageCSS = css`
 `;
 
 
-export const restrictedImageCss = css`
-  width: 265px;
-  height: 265px;
-  border-radius: 8px;
-`;
-
-export const portraitImageCSS = css`
-  width: 100%;
-  height: 100%;
-  max-height: 800px;
-`;
-
-export const defaultImageContainerCSS = css<DefaultImgContainerCssProps>`
-  max-width: 100%;
-  min-height: ${(props) => `${props.minHeight}`};
-`;
-
-export const LrgImgContainer = styled.div<LarImgContainerProp & DefaultImgContainerCssProps>`
+export const LrgImgContainer = styled.div`
 border-radius: 8px;
 background-color: gray;
 height: 100%;
@@ -91,10 +85,6 @@ width: 92%;
 
 margin-top: 1em;
 margin-bottom: 1.5em;
-
-${(props) => props.imageContainerCSS};
-${(props) => props.minHeight}
-
 `
 
 export const InfoBox = styled.div`

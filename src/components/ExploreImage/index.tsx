@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { UnsplashDataProps } from '../../features/feed'
 import LrgCollectionCard from '../LrgCollectionCard/LrgCollectionCard'
-import { defaultImageCSS, ImgArea, portraitImageCSS } from '../LrgCollectionCard/LrgCollectionCard.styled'
+import { defaultImageCSS, ImgArea, ImgGridArea } from '../LrgCollectionCard/LrgCollectionCard.styled'
 import PicModal from '../PicModal/PicModal'
 
 interface ExploreImageProps {
   item: UnsplashDataProps
-  portrait?: boolean
+  grid?: boolean
 }
 
-const ExploreImage = ({item, portrait}:ExploreImageProps) => {
+const ExploreImage = ({item, grid}:ExploreImageProps) => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const showModal = () => {
@@ -23,13 +23,22 @@ const ExploreImage = ({item, portrait}:ExploreImageProps) => {
   return (
     <>
     <PicModal key={item.id} item={item} onClose={closeModal} open={modalOpen}/>
-    <LrgCollectionCard key={item.id} item={item} portrait={item.width < item.height}>
+    <LrgCollectionCard key={item.id} item={item}>
+      {grid 
+      ? 
+      <ImgGridArea 
+        src={item.urls.regular}
+        alt={item.description}
+        onClick={showModal}
+        imageCSS={defaultImageCSS}
+      />
+      :
       <ImgArea 
         src={item.urls.regular} 
         alt={item.description}
         onClick={showModal}
-        imageCSS={portrait ? portraitImageCSS : defaultImageCSS}
-      />
+        imageCSS={defaultImageCSS}
+      />}
     </LrgCollectionCard>
     </>
   )

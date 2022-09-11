@@ -11,6 +11,7 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Saved from './pages/Saved';
 import Collections from './pages/Collections';
+import User from './pages/User';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -27,6 +28,7 @@ root.render(
               {/* Misc. routes goes here */}
               <Route path='/saved' element={<Saved />} />
               <Route path='/themes' element={<Collections />} />
+              <Route path='/user/:username' element={<User />} />
           </Routes>
         </BrowserRouter>
       </Provider>
@@ -34,7 +36,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

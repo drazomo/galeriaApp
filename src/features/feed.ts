@@ -27,7 +27,7 @@ export interface UnsplashDataProps extends ImgProperties {
 }
 
 const initialState: SliceInitState<UnsplashDataProps> = {
-  data: [],
+  data: [] as UnsplashDataProps[],
   isLoading: false,
   hasError: false,
   page: 1
@@ -51,7 +51,7 @@ const feedSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchFotos.fulfilled, (state, action) => {
-      state.data = [...state.data, ...action.payload]
+      state.data = [...state.data as UnsplashDataProps[], ...action.payload]
       state.hasError = false
       state.isLoading = false
     })
