@@ -11,16 +11,18 @@ const loop = [1,2,3,4,5,6,7,8]
 
 const User = () => {
   const dispatch = useAppDispatch()
-  const {data} = useAppSelector(state => state.userFeed)
+  const {data} = useAppSelector(state => state.userFeed) 
 
   useEffect(() => {
     dispatch(fetchUserData())
-  }, [])
-  
+  }, []);
+
+  console.log(data)
+
   return (
     <>
     <Container>
-     {data && <ImgAndUser item={data as UnsplashUsrDataProps}/>}
+      <ImgAndUser item={data as UnsplashUsrDataProps}/>
       <ContainerFlexContainer>
         {loop.map(user => (
           <UserAlbum />

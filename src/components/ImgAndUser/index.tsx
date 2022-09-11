@@ -6,7 +6,7 @@ interface ImgAndUserProps {
   item: UnsplashUsrDataProps
 }
 
-const ImgAndUser = ({item}: ImgAndUserProps) => {
+const ImgAndUser = ({item} : ImgAndUserProps) => {
   const stats = [{Posts : item.total_photos}, {Followers: item.followers_count}, {Following: item.following_count}]
 
   return (
@@ -17,7 +17,7 @@ const ImgAndUser = ({item}: ImgAndUserProps) => {
       <StatContainer>
         {
           stats.map((stat, idx) => (
-            <StatBox key={`stat_${idx}`}>
+            <StatBox key={`stat_${Object.keys(stat)}${idx}`}>
               <StatNumber>{ Object.values(stat) }</StatNumber>
               <StatCategory>
                 { Object.keys(stat) }
