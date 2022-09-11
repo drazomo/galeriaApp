@@ -41,7 +41,6 @@ const Collections = () => {
             <ExploreImage
               key={imgData.id} 
               item={imgData}
-              portrait={imgData.width < imgData.height}
             />
         )}
       )}

@@ -7,11 +7,10 @@ import { ModalBkg, ModalContainer, ModalImgArea} from './PicModal.styled'
 interface PicModalProps {
   onClose: () => void
   open: boolean
-  restrict?: boolean
   item: UnsplashDataProps
 }
 
-const PicModal = ({onClose, open, item, restrict}: PicModalProps) => {
+const PicModal = ({onClose, open, item}: PicModalProps) => {
 
   if (!open) return null;
 
