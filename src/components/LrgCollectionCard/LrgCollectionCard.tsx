@@ -16,9 +16,6 @@ export interface LrgPicProps {
   portrait?: boolean
 }
 
-const DEFAULT_LANDSCAPE_HEIGHT = "223px";
-const DEFAULT_PORTRAIT_HEIGHT = "325px";
-
 const LrgCollectionCard = (props: LrgPicProps) => {
   const {item, children, download} = props 
   const [stared, setStared] = useState(false);

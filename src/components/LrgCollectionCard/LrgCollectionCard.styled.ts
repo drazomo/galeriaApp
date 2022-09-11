@@ -59,6 +59,24 @@ export const ImgArea = styled.img<DisplayImageProps>`
   ${(props) => props.imageCSS}
 `;
 
+export const Grid = styled.div`
+  display: grid;
+  margin-top: 2em;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 2em;
+  grid-column-gap: 2em;
+`;
+
+export const ImgGridArea = styled.img<DisplayImageProps>`
+  border-radius: 8px;
+  width: 265px;
+  height: 265px;
+  background-color: gray;
+
+  ${(props) => props.imageCSS}
+`;
+
 export const defaultImageCSS = css`
   width: 100%;
   height: 100%;
