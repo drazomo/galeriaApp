@@ -6,11 +6,10 @@ import PicModal from '../PicModal/PicModal'
 
 interface ExploreImageProps {
   item: UnsplashDataProps
-  restrict?: boolean
   grid?: boolean
 }
 
-const ExploreImage = ({item, restrict, grid}:ExploreImageProps) => {
+const ExploreImage = ({item, grid}:ExploreImageProps) => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const showModal = () => {

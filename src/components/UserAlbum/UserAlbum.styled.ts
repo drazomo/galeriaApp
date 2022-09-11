@@ -1,7 +1,20 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const ContainerFlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+
+  overflow-x: auto;
   width: 870px;
+
+  div{
+    margin-right: 0.5em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 export const AlbumCover = styled.div`
@@ -17,7 +30,6 @@ export const AlbumContainer = styled.div`
   flex-direction: column;
   cursor: pointer;
   width: 100%;
-  overflow-x: auto;
   
   align-items: center;
   width: 112px;
