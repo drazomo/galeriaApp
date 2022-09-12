@@ -17,7 +17,7 @@ const User = () => {
     dispatch(fetchUserData())
   }, []);
 
-  console.log(data)
+  console.log(data);
 
   return (
     <>
