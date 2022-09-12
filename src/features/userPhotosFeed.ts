@@ -3,8 +3,8 @@ import { SliceInitState } from "../app/store";
 import { UnsplashDataProps } from "./feed";
 
 
-export const fetchUserFotos = createAsyncThunk('userFotosFeed/fetchUserFotos', async () => {
-  const res = await fetch(`https://api.unsplash.com/users/mailchimp/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`);
+export const fetchUserFotos = createAsyncThunk('userFotosFeed/fetchUserFotos', async (page: number) => {
+  const res = await fetch(`https://api.unsplash.com/users/mailchimp/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
   const data = await res.json();
   return data
 });
@@ -19,7 +19,11 @@ const initialState: SliceInitState<UnsplashDataProps> = {
 const userFotosFeed = createSlice({
   name: 'userFotosFeed',
   initialState,
-  reducers: {},
+  reducers: {
+    nextPage: (state) => {
+			state.page += 1
+		}
+  },
   extraReducers: builder => {
     builder.addCase(fetchUserFotos.fulfilled, (state, action) => {
       state.data = action.payload
@@ -36,3 +40,4 @@ const userFotosFeed = createSlice({
 })
 
 export default userFotosFeed.reducer;
+export const { nextPage } = userFotosFeed.actions

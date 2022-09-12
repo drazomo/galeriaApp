@@ -62,6 +62,7 @@ export const Grid = styled.div`
 `;
 
 export const ImgGridArea = styled.img<DisplayImageProps>`
+  cursor: pointer;
   border-radius: 8px;
   width: 265px;
   height: 265px;
