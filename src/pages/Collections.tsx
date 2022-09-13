@@ -13,16 +13,19 @@ const Collections = () => {
   const {data: showcase} = useAppSelector(state => state.showcaseFeed)
 
   useEffect(() => {
-    fetchImages()
     dispatch(fetchShowcaseFeed())
-  }, []);
-
-
-  const fetchImages = async () => {
-    dispatch(nextPage())
     dispatch(fetchFotos(page))
-  }
+  }, [])
 
+  useEffect(() => {
+    if(page !== 1){
+      dispatch(fetchFotos(page))
+    }
+  }, [page])
+
+  const nextFn = async () => {
+    dispatch(nextPage())
+  };
 
   return (
     <>
@@ -34,7 +37,7 @@ const Collections = () => {
     }
     </CardCollectionContainer>
       
-    <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={fetchImages} hasMore={true} loader={<></>}>
+    <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={nextFn} hasMore={true} loader={<></>}>
       {
         (data as UnsplashDataProps[])?.map((imgData) => {
           return (

@@ -26,7 +26,7 @@ const userFotosFeed = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchUserFotos.fulfilled, (state, action) => {
-      state.data = action.payload
+      state.data = Array.from(new Set([...state.data as UnsplashDataProps[], ...action.payload]))
       state.hasError = false
       state.isLoading = false
     })
