@@ -42,6 +42,7 @@ flex-direction: column;
 `;
 
 export const StatNumber = styled.h3`
+text-align: center;
 font-weight: 600;
 `;
 

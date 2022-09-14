@@ -23,23 +23,25 @@ const ExploreImage = ({item, grid}:ExploreImageProps) => {
   return (
     <>
     <PicModal key={item.id} item={item} onClose={closeModal} open={modalOpen}/>
-    <LrgCollectionCard key={item.id} item={item}>
-      {grid 
+    {
+    grid 
       ? 
       <ImgGridArea 
         src={item.urls.regular}
         alt={item.description}
         onClick={showModal}
-        imageCSS={defaultImageCSS}
+        imageCSS={{objectFit: 'cover'}}
       />
       :
+    <LrgCollectionCard key={item.id} item={item}>
       <ImgArea 
         src={item.urls.regular} 
         alt={item.description}
         onClick={showModal}
         imageCSS={defaultImageCSS}
-      />}
+      />
     </LrgCollectionCard>
+    }
     </>
   )
 }

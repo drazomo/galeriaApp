@@ -27,7 +27,7 @@ export interface UnsplashDataProps extends ImgProperties {
 }
 
 const initialState: SliceInitState<UnsplashDataProps> = {
-  data: [] as UnsplashDataProps[],
+  data: [],
   isLoading: false,
   hasError: false,
   page: 1
@@ -36,7 +36,7 @@ const initialState: SliceInitState<UnsplashDataProps> = {
 export const fetchFotos = createAsyncThunk('feed/fetchFotos', async (page: number) => {
   const res = await fetch(`https://api.unsplash.com/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
   const data = await res.json();
-
+  
   return data
 })
 
@@ -46,12 +46,12 @@ const feedSlice = createSlice({
   initialState,
   reducers: {
     nextPage: (state) => {
-			state.page += 1
+			state.page = state.page + 1
 		}
   },
   extraReducers: builder => {
     builder.addCase(fetchFotos.fulfilled, (state, action) => {
-      state.data = [...state.data as UnsplashDataProps[], ...action.payload]
+      state.data = Array.from(new Set([...state.data as UnsplashDataProps[], ...action.payload]))
       state.hasError = false
       state.isLoading = false
     })

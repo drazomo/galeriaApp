@@ -11,23 +11,30 @@ const App = () => {
   const {data, page} = useAppSelector(state => state.feed)
 
   useEffect(() => {
-    fetchImages();
-  }, []);
+    if(page !== 1){
+      dispatch(fetchFotos(page))
+    }
+  }, [page])
 
-  const fetchImages = async () => {
+  useEffect(() => {
+    dispatch(fetchFotos(1))
+  }, [])
+
+  const nextFn = () => {
     dispatch(nextPage())
-    dispatch(fetchFotos(page))
-  }
+  };
 
   const breakpointColumnsObj = {
     default: 3,
     700: 2,
   };
 
+  console.log(data)
+
   return (
     <>
       <MosaicContainer>
-      <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={fetchImages} hasMore={true} loader={<></>}>
+      <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={nextFn} hasMore={true} loader={<></>} >
         <MosaicGrid>
           <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {
