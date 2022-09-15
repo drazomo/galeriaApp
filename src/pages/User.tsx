@@ -9,6 +9,7 @@ import { Container } from '../components/User/User.styled'
 import UserAlbum from '../components/UserAlbum'
 import { ContainerFlexContainer } from '../components/UserAlbum/UserAlbum.styled'
 import { UnsplashDataProps } from '../features/feed'
+import { fetchUserCollection } from '../features/userCollection'
 import { fetchUserData, UnsplashUsrDataProps } from '../features/userFeed'
 import { fetchUserFotos, nextPage } from '../features/userPhotosFeed'
 
@@ -22,7 +23,8 @@ const User = () => {
   const dispatch = useAppDispatch()
   const { data } = useAppSelector(state => state.userFeed)
   const { data: userFotos, page } = useAppSelector(state => state.userPhotosFeed)
-  const { username } = useParams<keyof ParamsInterface>() as ParamsInterface;
+  const { data: userCollections, page: collectionPage } = useAppSelector(state => state.userCollection)
+  const { username } = useParams<keyof ParamsInterface>() as ParamsInterface
 
   useEffect(() => {
     if(page !== 1){
@@ -33,7 +35,10 @@ const User = () => {
   useEffect(() => {
     dispatch(fetchUserData(username))
     dispatch(fetchUserFotos({page: 1, user: username}))
+    dispatch(fetchUserCollection({page: collectionPage, user: username}))
   }, [])
+
+  console.log(userCollections)
 
   const nextFn = async () => {
     dispatch(nextPage())
@@ -44,8 +49,8 @@ const User = () => {
     <Container>
       <ImgAndUser item={data as UnsplashUsrDataProps}/>
       <ContainerFlexContainer>
-        {loop.map(user => (
-          <UserAlbum />
+        {(userCollections as UnsplashDataProps[]).map(item => (
+          <UserAlbum item={item}/>
         ))}
       </ContainerFlexContainer>
     </Container>
