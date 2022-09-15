@@ -11,6 +11,13 @@ export interface ImgProperties {
 }
 
 export interface UnsplashDataProps extends ImgProperties {
+  title?: string;
+  cover_photo?: {
+    urls: {
+      regular: string;
+      small: string;
+    }
+  },
   links: {
     self: string,
     download: string

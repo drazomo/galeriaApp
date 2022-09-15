@@ -17,7 +17,7 @@ export const ContainerFlexContainer = styled.div`
   }
 `;
 
-export const AlbumCover = styled.div`
+export const AlbumCover = styled.img`
   width: 86px;
   height: 86px;
 
