@@ -103,7 +103,9 @@ margin-right: auto;
 }
 `
 
-export const InfoUsrContainer = styled.div`
+export const InfoUsrContainer = styled.a`
+text-decoration: none;
+color: black;
 display: flex;
 margin-top: 1.5em;
 

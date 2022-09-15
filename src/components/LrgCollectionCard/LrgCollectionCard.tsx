@@ -25,7 +25,7 @@ const LrgCollectionCard = (props: LrgPicProps) => {
     <>
     <CollectionCardContainer>
       <InfoBox>
-        <InfoUsrContainer>
+        <InfoUsrContainer href={`/user/${item.user.username}`}>
           <InfoUsrImg 
             style={{backgroundImage: `url("${item.user.profile_image.large}")`,
             backgroundSize: 'cover', 
