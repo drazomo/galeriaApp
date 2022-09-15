@@ -29,8 +29,6 @@ const App = () => {
     700: 2,
   };
 
-  console.log(data)
-
   return (
     <>
       <MosaicContainer>
@@ -39,7 +37,7 @@ const App = () => {
           <Masonry breakpointCols={breakpointColumnsObj} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {
               (data as UnsplashDataProps[]).map((img) => (
-                <MosaicTile image={img.urls.small as string} alt={img?.description} key={img.id}/>
+                  <MosaicTile image={img.urls.small as string} alt={img?.description} key={img.id} item={img}/>
               ))
             }
           </Masonry>
