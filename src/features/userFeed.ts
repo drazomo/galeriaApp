@@ -26,8 +26,8 @@ const initialState = {
   page: 1
 };
 
-export const fetchUserData = createAsyncThunk('userFeed/fetchUserData', async () => {
-  const res = await fetch(`https://api.unsplash.com/users/mailchimp?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`);
+export const fetchUserData = createAsyncThunk('userFeed/fetchUserData', async (username: string) => {
+  const res = await fetch(`https://api.unsplash.com/users/${username}?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}`);
   const data = await res.json();
   return data
 })

@@ -10,7 +10,7 @@ import UserAlbum from '../components/UserAlbum'
 import { ContainerFlexContainer } from '../components/UserAlbum/UserAlbum.styled'
 import { UnsplashDataProps } from '../features/feed'
 import { fetchUserData, UnsplashUsrDataProps } from '../features/userFeed'
-import { fetchUserFotos } from '../features/userPhotosFeed'
+import { fetchUserFotos, nextPage } from '../features/userPhotosFeed'
 
 const loop = [1,2,3,4,5,6,7,8]
 
@@ -20,19 +20,23 @@ interface ParamsInterface {
 
 const User = () => {
   const dispatch = useAppDispatch()
-  const { data, page } = useAppSelector(state => state.userFeed)
-  const { data: userFotos } = useAppSelector(state => state.userPhotosFeed)
+  const { data } = useAppSelector(state => state.userFeed)
+  const { data: userFotos, page } = useAppSelector(state => state.userPhotosFeed)
   const { username } = useParams<keyof ParamsInterface>() as ParamsInterface;
 
-  console.log(`user: ${username}`)
+  useEffect(() => {
+    if(page !== 1){
+      dispatch(fetchUserFotos({page, user: username}))
+    }
+  }, [page])
 
   useEffect(() => {
-    dispatch(fetchUserData())
-    dispatch(fetchUserFotos({page, user: username}))
-  }, []);
+    dispatch(fetchUserData(username))
+    dispatch(fetchUserFotos({page: 1, user: username}))
+  }, [])
 
   const nextFn = async () => {
-    dispatch(fetchUserFotos({page, user: username}))
+    dispatch(nextPage())
   }
 
   return (
@@ -49,12 +53,12 @@ const User = () => {
     <InfiniteScroll 
       dataLength={(userFotos as UnsplashDataProps[])?.length} 
       next={nextFn} 
-      hasMore={(userFotos as UnsplashDataProps[])?.length < data.total_photos} 
+      hasMore={(userFotos as UnsplashDataProps[]).length < data.total_photos} 
       loader={<></>}
     >
       <Grid>
         {(userFotos as UnsplashDataProps[]).map(foto => (
-          <ExploreImage item={foto} grid key={`gridIMG_${foto.id}`}/>
+          <ExploreImage key={`${foto.id}_gridFoto`} item={foto} grid/>
         ))}
       </Grid>
     </InfiniteScroll>
