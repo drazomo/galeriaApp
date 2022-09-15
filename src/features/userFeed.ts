@@ -12,6 +12,11 @@ export interface UnsplashUsrDataProps {
   total_photos: number
 };
 
+export interface userProps {
+  page: number;
+  user: string;
+}
+
 const initialState = {
   data: {
     name: '',

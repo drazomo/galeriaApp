@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import feed from '../features/feed'
 import showcaseFeed from "../features/showcaseFeed";
+import userCollection from "../features/userCollection";
 import userFeed from "../features/userFeed";
 import userPhotosFeed from "../features/userPhotosFeed";
 
@@ -16,7 +17,8 @@ export const store = configureStore({
     feed,
     showcaseFeed,
     userFeed,
-    userPhotosFeed
+    userPhotosFeed,
+    userCollection
   },
 });
 
