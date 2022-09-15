@@ -1,11 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { SliceInitState } from "../app/store";
 import { UnsplashDataProps } from "./feed";
-
-interface fetchUserFotosProps {
-  page: number;
-  user: string;
-}
+import { userProps } from "./userFeed";
 
 const initialState: SliceInitState<UnsplashDataProps> = {
   data: [],
@@ -14,7 +10,7 @@ const initialState: SliceInitState<UnsplashDataProps> = {
   page: 1
 }
 
-export const fetchUserFotos = createAsyncThunk('userFotosFeed/fetchUserFotos', async (params: fetchUserFotosProps) => {
+export const fetchUserFotos = createAsyncThunk('userFotosFeed/fetchUserFotos', async (params: userProps) => {
   const {page, user} = params;
   const res = await fetch(`https://api.unsplash.com/users/${user}/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
   const data = await res.json();
