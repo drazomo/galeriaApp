@@ -7,13 +7,6 @@ interface fetchUserFotosProps {
   user: string;
 }
 
-export const fetchUserFotos = createAsyncThunk('userFotosFeed/fetchUserFotos', async (params: fetchUserFotosProps) => {
-  const {page, user} = params;
-  const res = await fetch(`https://api.unsplash.com/users/${user}/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
-  const data = await res.json();
-  return data
-});
-
 const initialState: SliceInitState<UnsplashDataProps> = {
   data: [],
   hasError: false,
@@ -21,12 +14,19 @@ const initialState: SliceInitState<UnsplashDataProps> = {
   page: 1
 }
 
+export const fetchUserFotos = createAsyncThunk('userFotosFeed/fetchUserFotos', async (params: fetchUserFotosProps) => {
+  const {page, user} = params;
+  const res = await fetch(`https://api.unsplash.com/users/${user}/photos?client_id=${process.env.REACT_APP_UNSPLASH_CLIENT_ID}&page=${page}`);
+  const data = await res.json();
+  return data
+});
+
 const userFotosFeed = createSlice({
   name: 'userFotosFeed',
   initialState,
   reducers: {
     nextPage: (state) => {
-			state.page += 1
+      state.page = state.page + 1
 		}
   },
   extraReducers: builder => {
@@ -44,5 +44,5 @@ const userFotosFeed = createSlice({
   }
 })
 
-export default userFotosFeed.reducer;
 export const { nextPage } = userFotosFeed.actions
+export default userFotosFeed.reducer;
