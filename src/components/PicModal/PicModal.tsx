@@ -18,7 +18,7 @@ const PicModal = ({onClose, open, item}: PicModalProps) => {
     <>
     <ModalBkg onClick={onClose}/>
     <ModalContainer>
-    <LrgCollectionCard item={item} download key={`modal_${item.id}`}>
+    <LrgCollectionCard item={item} key={`modal_${item.id}`} crossOnClick={onClose} download close>
       <ModalImgArea 
         src={item.urls.regular} 
         alt={item.description}

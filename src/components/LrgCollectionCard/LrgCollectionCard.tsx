@@ -4,6 +4,7 @@ import {ReactComponent as Stared} from '../../images/Iconly-Filled-Star.ff1773db
 import {ReactComponent as BrokenStar} from '../../images/Iconly-Broken-Star.3c2feada.svg';
 import {ReactComponent as DetailDots} from '../../images/Icon-show-detail.08802497.svg';
 import {ReactComponent as DownloadIcn} from '../../images/Icon-feather-download.f34f10a8.svg';
+import {ReactComponent as CloseIcn} from '../../images/Icon-metro-cross.svg';
 import { CollectionButtonBar, CollectionCardContainer, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
 import { DownloadBtn, DownloadContainer } from '../PicModal/PicModal.styled';
 import { UnsplashDataProps } from '../../features/feed';
@@ -12,6 +13,8 @@ export interface LrgPicProps {
   item: UnsplashDataProps
   children: React.ReactNode
   download?: boolean
+  close?: boolean
+  crossOnClick?: () => void
 }
 
 const LrgCollectionCard = (props: LrgPicProps) => {
@@ -35,7 +38,7 @@ const LrgCollectionCard = (props: LrgPicProps) => {
           </div>
         </InfoUsrContainer>
         <div className='detailsDiv'>
-          <DetailDots />
+          {props.close ? <CloseIcn onClick={props.crossOnClick}/> : <DetailDots />}
         </div>
       </InfoBox>
       {item.description &&
