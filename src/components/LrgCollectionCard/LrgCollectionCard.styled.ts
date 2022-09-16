@@ -46,6 +46,7 @@ margin-bottom: 2em;
 `
 
 export const ImgArea = styled.img<DisplayImageProps>`
+  cursor: pointer;
   border-radius: 8px;
   min-width: 100%;
   object-fit: cover;
@@ -98,6 +99,7 @@ margin-left: 2em;
 margin-right: auto;
 
 .detailsDiv {
+  cursor: pointer;
   display: flex;
   align-items: center;
 }

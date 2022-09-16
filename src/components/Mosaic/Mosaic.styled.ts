@@ -36,6 +36,7 @@ export const MosaicGrid = styled.div`
 `;
 
 export const MosaicBody = styled.div`
+  cursor: pointer;
   img {
     border-radius: 16px;
     width: 100%;

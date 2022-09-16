@@ -18,6 +18,7 @@ export const NavBarContainer = styled.nav`
   }
 
   .searchIcnContainer {
+    cursor: pointer;
     position: absolute;
     left: 0.5em;
     top: 0.6em;
