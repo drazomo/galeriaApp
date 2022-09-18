@@ -13,8 +13,6 @@ import { fetchUserCollection } from '../features/userCollection'
 import { fetchUserData, UnsplashUsrDataProps } from '../features/userFeed'
 import { fetchUserFotos, nextPage } from '../features/userPhotosFeed'
 
-const loop = [1,2,3,4,5,6,7,8]
-
 interface ParamsInterface {
   username: string
 }
@@ -38,7 +36,6 @@ const User = () => {
     dispatch(fetchUserCollection({page: collectionPage, user: username}))
   }, [])
 
-  console.log(userCollections)
 
   const nextFn = async () => {
     dispatch(nextPage())
