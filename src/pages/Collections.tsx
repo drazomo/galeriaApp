@@ -27,12 +27,14 @@ const Collections = () => {
     dispatch(nextPage())
   };
 
+  console.log(showcase)
+
   return (
     <>
     <CardCollectionContainer>
     {
       (showcase as CollectionCardProps[]).map(({title, id, preview_photos}: CollectionCardProps) => (
-        <CollectionCard catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
+        <CollectionCard id={id} catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
       ))
     }
     </CardCollectionContainer>

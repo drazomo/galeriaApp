@@ -4,6 +4,7 @@ import showcaseFeed from "../features/showcaseFeed";
 import userCollection from "../features/userCollection";
 import userFeed from "../features/userFeed";
 import userPhotosFeed from "../features/userPhotosFeed";
+import collection from "../features/collection";
 
 export interface SliceInitState<T> {
   data: T[] | T
@@ -15,6 +16,7 @@ export interface SliceInitState<T> {
 export const store = configureStore({
   reducer: {
     feed,
+    collection,
     showcaseFeed,
     userFeed,
     userPhotosFeed,
