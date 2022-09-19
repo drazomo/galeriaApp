@@ -27,7 +27,6 @@ const Collections = () => {
     dispatch(nextPage())
   };
 
-  console.log(showcase)
 
   return (
     <>
