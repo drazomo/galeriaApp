@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
+import CollectionDetails from '../components/CollectionDetails'
 import ExploreImage from '../components/ExploreImage'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
 import { Grid } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
@@ -36,6 +37,7 @@ const Collection = () => {
   return (
     <>
       <Container>
+      <CollectionDetails />
       <InfiniteScroll 
         dataLength={(data as UnsplashDataProps[])?.length}
         hasMore={data.length < detail.total_photos}
