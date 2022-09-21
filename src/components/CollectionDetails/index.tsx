@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { UnsplashDataProps } from '../../features/feed'
 import { Button } from '../Button/Button.styled'
 import { CollectionDetailsContainer, CollectionImg, CollectionInfoBx, PostsText } from './CollectionDetails.styled'
 
-const CollectionDetails = () => {
+interface CollectionInterface {
+  item: UnsplashDataProps
+}
+
+const CollectionDetails = ({item}: CollectionInterface) => {
+  const [ followed, setFollowed ] = useState(false)
+
+  const handleOnClick = () => {
+    setFollowed(prevState => !prevState)
+  }
+
   return (
-    <CollectionDetailsContainer>
-      <CollectionImg src='' />
+    <CollectionDetailsContainer key={`${item.id}_collectionDetails`}>
+      <CollectionImg src={item.cover_photo?.urls.regular} />
       <CollectionInfoBx>
-        <h2>#Cars</h2>
-        <p>Of incommode supported provision on furnished objection exquisite me. Existence its certainly explained how</p>
-        <PostsText>80.533.3564 Posts</PostsText>
-        <Button>Follow</Button>
+        <h2>#{item.title}</h2>
+        <p>{item.description}</p>
+        <PostsText>{item.total_photos} Posts</PostsText>
+        <Button onClick={handleOnClick}>{followed ? 'Unfollowed' : 'Follow'}</Button>
       </CollectionInfoBx>
     </CollectionDetailsContainer>
   )
