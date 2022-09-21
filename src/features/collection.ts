@@ -6,9 +6,7 @@ const initialState = {
   isLoading: false,
   hasError: false,
   data: [] as UnsplashDataProps[],
-  detail: {
-    total_photos: 0
-  }
+  detail: {} as UnsplashDataProps
 }
 
 interface CollectionProps {

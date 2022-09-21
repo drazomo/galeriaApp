@@ -12,7 +12,8 @@ export interface ImgProperties {
 
 export interface UnsplashDataProps extends ImgProperties {
   title?: string;
-  cover_photo?: {
+  total_photos: number;
+  cover_photo: {
     urls: {
       regular: string;
       small: string;

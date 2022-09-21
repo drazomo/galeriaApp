@@ -37,7 +37,7 @@ const Collection = () => {
   return (
     <>
       <Container>
-      <CollectionDetails />
+      <CollectionDetails item={detail} />
       <InfiniteScroll 
         dataLength={(data as UnsplashDataProps[])?.length}
         hasMore={data.length < detail.total_photos}

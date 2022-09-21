@@ -8,11 +8,13 @@ width: 870px;
 `;
 
 export const CollectionImg = styled.img`
+background-color: grey;
+cursor: pointer;
+object-fit: cover;
+
 width: 183px;
 height: 183px;
 border-radius: 8px;
-
-background-color: grey;
 `;
 
 export const CollectionInfoBx = styled.div`
