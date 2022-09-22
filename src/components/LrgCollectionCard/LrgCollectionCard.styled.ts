@@ -63,11 +63,13 @@ export const Grid = styled.div`
 `;
 
 export const ImgGridArea = styled.img<DisplayImageProps>`
+  background-color: gray;
   cursor: pointer;
   border-radius: 8px;
   width: 265px;
   height: 265px;
-  background-color: gray;
+  transition: .5s ease;
+  backface-visibility: hidden;
 
   ${(props) => props.imageCSS}
 `;
@@ -136,3 +138,34 @@ border-radius: 8px;
 width: 57px;
 height: 57px;
 `
+
+export const ImgGridDiv = styled.div`
+cursor: pointer;
+border-radius: 8px;
+width: 265px;
+height: 265px;
+position: relative;
+overflow-y: hidden;
+
+:hover img {
+  opacity: 0.3;
+}
+
+:hover div {
+  opacity: 1;
+}
+`;
+
+export const Overlay = styled.div`
+transition: .5s ease;
+opacity: 0;
+
+position: absolute;
+top: 50%;
+left: 50%;
+
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-align: center;
+`;
+
