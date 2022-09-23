@@ -1,15 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { SliceInitState } from "../app/store";
-
 export interface CollectionCardProps {
   title: string
   id: string
   preview_photos: any
 }
 
-
-const initialState: SliceInitState<CollectionCardProps>  = {
-  data: [],
+const initialState = {
+  selectedCollections: [] as String[],
+  data: [] as CollectionCardProps[],
   isLoading: false,
   hasError: false,
   page: 1
