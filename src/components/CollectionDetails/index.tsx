@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useAppDispatch } from '../../app/hooks'
 import { UnsplashDataProps } from '../../features/feed'
-import { collectionExistInLocalStorage, removeCollection, saveCollection } from '../../utils'
+import { fetchSavedCollections, removeCollection, saveCollection } from '../../features/showcaseFeed'
+import { collectionExistInLocalStorage } from '../../utils'
 import { Button } from '../Button/Button.styled'
 import { CollectionDetailsContainer, CollectionImg, CollectionInfoBx, PostsText } from './CollectionDetails.styled'
 
@@ -9,14 +11,16 @@ interface CollectionInterface {
 }
 
 const CollectionDetails = ({item}: CollectionInterface) => {
+  const dispatch = useAppDispatch()
   const [ followed, setFollowed ] = useState(false)
 
   const handleOnClick = (collection: UnsplashDataProps) => {
     setFollowed(prevState => !prevState)
-    followed ? removeCollection(collection.id) : saveCollection(collection)
+    followed ? dispatch(removeCollection(collection.id)) : dispatch(saveCollection(collection))
   }
 
   useEffect(() => {
+    dispatch(fetchSavedCollections())
     setFollowed(collectionExistInLocalStorage(item.id))
   }, [followed, item.id])
 
