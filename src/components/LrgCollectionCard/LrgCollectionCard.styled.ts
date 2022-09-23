@@ -3,6 +3,7 @@ import { theme } from '../../styles/theme';
 
 interface DisplayImageProps {
   imageCSS?: {}
+  hoverEffect?: boolean
 }
 
 export const CollectionCardContainer = styled.div`
@@ -139,7 +140,7 @@ width: 57px;
 height: 57px;
 `
 
-export const ImgGridDiv = styled.div`
+export const ImgGridDiv = styled.div<DisplayImageProps>`
 cursor: pointer;
 border-radius: 8px;
 width: 265px;
@@ -147,13 +148,13 @@ height: 265px;
 position: relative;
 overflow-y: hidden;
 
-:hover img {
-  opacity: 0.3;
-}
+  :hover img {
+    opacity: ${(props) => props.hoverEffect ? 0.3 : 1};
+  }
 
-:hover div {
-  opacity: 1;
-}
+  :hover div {
+    opacity: ${(props) => props.hoverEffect ? 1 : 0};
+  }
 `;
 
 export const Overlay = styled.div`
@@ -167,5 +168,11 @@ left: 50%;
 transform: translate(-50%, -50%);
 -ms-transform: translate(-50%, -50%);
 text-align: center;
+
+p {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: black;
+}
 `;
 

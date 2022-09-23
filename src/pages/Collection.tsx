@@ -50,6 +50,7 @@ const Collection = () => {
               key={`${foto.id}_gridCollection`}
               item={foto}
               grid
+              hover
             />
           ))}
         </Grid>

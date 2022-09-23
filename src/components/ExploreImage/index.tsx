@@ -7,9 +7,10 @@ import PicModal from '../PicModal/PicModal'
 interface ExploreImageProps {
   item: UnsplashDataProps
   grid?: boolean
+  hover?: boolean
 }
 
-const ExploreImage = ({item, grid}:ExploreImageProps) => {
+const ExploreImage = ({item, grid, hover}:ExploreImageProps) => {
   const [modalOpen, setModalOpen] = useState(false)
 
   const showModal = () => {
@@ -22,13 +23,20 @@ const ExploreImage = ({item, grid}:ExploreImageProps) => {
 
   return (
     <>
-    <PicModal key={item.id} item={item} onClose={closeModal} open={modalOpen} />
+    <PicModal 
+      key={item.id} 
+      item={item} 
+      onClose={closeModal} 
+      open={modalOpen}
+    />
     {
     grid 
       ? 
-      <ImgGridDiv>
+      <ImgGridDiv hoverEffect={hover}>
         <Overlay>
-          {item.likes} likes
+          <p>
+            {item.likes} likes
+          </p>
         </Overlay>
         <ImgGridArea 
           src={item.urls.regular}
