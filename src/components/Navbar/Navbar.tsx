@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
       <NavIcnContainer>
         {iconButtons.map(({sauce, alt, name, className, link}) => (
-          <NavIconItem>
+          <NavIconItem key={`icnBtn_${alt.replace(/\w/g, '')}`}>
             <input 
               type='radio' 
               name='toggle_nav_pages' 
@@ -40,7 +40,7 @@ const Navbar = () => {
               checked={checked === name.toLowerCase() && true}
             />
             <Link to={link}>
-              <NavIconBtn key={`icnBtn_${alt.replace(/\w/g, '')}`} className={className} onClick={() => handleIconClick(name.toLowerCase())}>
+              <NavIconBtn className={className} onClick={() => handleIconClick(name.toLowerCase())}>
                   <div style={{ width: '28px', height: '25px'}}>
                     {sauce}
                   </div>
