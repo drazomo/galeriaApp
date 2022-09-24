@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
 import { fetchSavedCollections, removeCollection, saveCollection } from '../../features/clientSaved'
 import { UnsplashDataProps } from '../../features/feed'
-import { collectionExistInLocalStorage } from '../../utils'
+import { collectionExistInLocalStorage, SAVED_COLLECTIONS } from '../../utils'
 import { Button } from '../Button/Button.styled'
 import { CollectionDetailsContainer, CollectionImg, CollectionInfoBx, PostsText } from './CollectionDetails.styled'
 
@@ -16,13 +16,13 @@ const CollectionDetails = ({item}: CollectionInterface) => {
 
   const handleOnClick = (collection: UnsplashDataProps) => {
     setFollowed(prevState => !prevState)
-    followed ? dispatch(removeCollection(collection.id)) : dispatch(saveCollection(collection))
+    followed ? dispatch(removeCollection({id: collection.id, type: 'collection'})) : dispatch(saveCollection({...collection, type: 'collection'}))
   }
 
   useEffect(() => {
     dispatch(fetchSavedCollections())
-    setFollowed(collectionExistInLocalStorage(item.id))
-  }, [followed, item.id])
+    setFollowed(collectionExistInLocalStorage({id: item.id, savedType: SAVED_COLLECTIONS}))
+  }, [dispatch, followed, item.id])
 
   return (
     <CollectionDetailsContainer key={`${item.id}_collectionDetails`}>

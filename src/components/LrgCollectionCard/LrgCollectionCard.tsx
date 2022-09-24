@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {ReactComponent as BrokenHeart} from '../../images/Iconly-Broken-Heart.5896217f.svg';
 import {ReactComponent as Stared} from '../../images/Iconly-Filled-Star.ff1773db.svg';
 import {ReactComponent as BrokenStar} from '../../images/Iconly-Broken-Star.3c2feada.svg';
@@ -8,6 +8,9 @@ import {ReactComponent as CloseIcn} from '../../images/Icon-metro-cross.svg';
 import { CollectionButtonBar, CollectionCardContainer, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
 import { DownloadBtn, DownloadContainer } from '../PicModal/PicModal.styled';
 import { UnsplashDataProps } from '../../features/feed';
+import { useAppDispatch } from '../../app/hooks';
+import { fetchSavedCollections, removeCollection, saveCollection } from '../../features/clientSaved';
+import { collectionExistInLocalStorage, SAVED_IMGS } from '../../utils';
 
 export interface LrgPicProps {
   item: UnsplashDataProps
@@ -18,8 +21,19 @@ export interface LrgPicProps {
 }
 
 const LrgCollectionCard = (props: LrgPicProps) => {
+  const dispatch = useAppDispatch()
   const {item, children, download} = props 
-  const [stared, setStared] = useState(false);
+  const [stared, setStared] = useState(false)
+
+  useEffect(() => {
+    dispatch(fetchSavedCollections())
+    setStared(collectionExistInLocalStorage({id: item.id, savedType: SAVED_IMGS}))
+  }, [dispatch, stared, item.id])
+
+  const handleStarClick = (item: UnsplashDataProps) => {
+    setStared(prevStared => !prevStared)
+    stared ? dispatch(removeCollection({id: item.id, type: 'photo'})) : dispatch(saveCollection({...item, type: 'photo'}))
+  }
 
   return (
     <>
@@ -56,7 +70,7 @@ const LrgCollectionCard = (props: LrgPicProps) => {
         {item.likes}
         </p>
         </div>
-        <div onClick={() => setStared(prevStared => !prevStared)} style={{ cursor: 'pointer' }}>
+        <div onClick={() => handleStarClick(item)} style={{ cursor: 'pointer' }}>
         {stared ? <Stared /> : <BrokenStar />}
         </div>
       </CollectionButtonBar>
