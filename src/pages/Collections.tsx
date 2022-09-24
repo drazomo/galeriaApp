@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import { fetchFotos, nextPage, UnsplashDataProps } from '../features/feed'
-import { CollectionCardProps, fetchShowcaseFeed } from '../features/showcaseFeed'
+import { CollectionCardProps, fetchSavedCollections, fetchShowcaseFeed } from '../features/showcaseFeed'
 import { CardCollectionContainer } from '../components/Collection/Collection.styled'
 import CollectionCard from '../components/Collection/CollectionCards'
 import ExploreImage from '../components/ExploreImage'
@@ -13,8 +13,9 @@ const Collections = () => {
   const {data: showcase} = useAppSelector(state => state.showcaseFeed)
 
   useEffect(() => {
-    dispatch(fetchShowcaseFeed())
+    dispatch(fetchSavedCollections())
     dispatch(fetchFotos(page))
+    dispatch(fetchShowcaseFeed())
   }, [])
 
   useEffect(() => {
