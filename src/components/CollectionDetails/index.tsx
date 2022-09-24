@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useAppDispatch } from '../../app/hooks'
 import { UnsplashDataProps } from '../../features/feed'
+import { fetchSavedCollections, removeCollection, saveCollection } from '../../features/showcaseFeed'
+import { collectionExistInLocalStorage } from '../../utils'
 import { Button } from '../Button/Button.styled'
 import { CollectionDetailsContainer, CollectionImg, CollectionInfoBx, PostsText } from './CollectionDetails.styled'
 
@@ -8,11 +11,18 @@ interface CollectionInterface {
 }
 
 const CollectionDetails = ({item}: CollectionInterface) => {
+  const dispatch = useAppDispatch()
   const [ followed, setFollowed ] = useState(false)
 
-  const handleOnClick = () => {
+  const handleOnClick = (collection: UnsplashDataProps) => {
     setFollowed(prevState => !prevState)
+    followed ? dispatch(removeCollection(collection.id)) : dispatch(saveCollection(collection))
   }
+
+  useEffect(() => {
+    dispatch(fetchSavedCollections())
+    setFollowed(collectionExistInLocalStorage(item.id))
+  }, [followed, item.id])
 
   return (
     <CollectionDetailsContainer key={`${item.id}_collectionDetails`}>
@@ -21,7 +31,7 @@ const CollectionDetails = ({item}: CollectionInterface) => {
         <h2>#{item.title}</h2>
         <p>{item.description}</p>
         <PostsText>{item.total_photos} Posts</PostsText>
-        <Button onClick={handleOnClick}>{followed ? 'Unfollowed' : 'Follow'}</Button>
+        <Button onClick={() => handleOnClick(item)}>{followed ? 'Unfollow' : 'Follow'}</Button>
       </CollectionInfoBx>
     </CollectionDetailsContainer>
   )
