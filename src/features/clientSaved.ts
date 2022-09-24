@@ -12,7 +12,7 @@ const clientSaved = createSlice({
   reducers: {
     fetchSavedCollections(state){
       state.selectedCollections = JSON.parse(localStorage.getItem(SAVED_COLLECTIONS) as string) || {}
-      state.selectedCollections = JSON.parse(localStorage.getItem(SAVED_IMGS) as string) || {}
+      state.selectedPhotos = JSON.parse(localStorage.getItem(SAVED_IMGS) as string) || {}
     },
     saveCollection(state, action) {
       let savedCollections:Record<string, UnsplashDataProps> = {}
