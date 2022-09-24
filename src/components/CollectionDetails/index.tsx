@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
+import { fetchSavedCollections, removeCollection, saveCollection } from '../../features/clientSaved'
 import { UnsplashDataProps } from '../../features/feed'
-import { fetchSavedCollections, removeCollection, saveCollection } from '../../features/showcaseFeed'
 import { collectionExistInLocalStorage } from '../../utils'
 import { Button } from '../Button/Button.styled'
 import { CollectionDetailsContainer, CollectionImg, CollectionInfoBx, PostsText } from './CollectionDetails.styled'

@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { COLLECTIONS_IDS } from "../utils";
-import { UnsplashDataProps } from "./feed";
 export interface CollectionCardProps {
   title: string
   id: string
@@ -8,7 +6,6 @@ export interface CollectionCardProps {
 }
 
 const initialState = {
-  selectedCollections: {},
   data: [] as CollectionCardProps[],
   isLoading: false,
   hasError: false,
@@ -24,26 +21,7 @@ export const fetchShowcaseFeed = createAsyncThunk('showcaseFeed/fetchShowcaseFee
 const showcaseFeed = createSlice({
   name: 'showcaseFeed',
   initialState,
-  reducers: {
-    fetchSavedCollections(state){
-      state.selectedCollections = JSON.parse(localStorage.getItem(COLLECTIONS_IDS) as string) || {}
-    },
-    saveCollection(state, action) {
-      let savedCollections:Record<string, UnsplashDataProps> = {}
-      if(localStorage.getItem(COLLECTIONS_IDS) !== null) {
-        savedCollections = JSON.parse(localStorage.getItem(COLLECTIONS_IDS) as string)
-      }
-      savedCollections[action.payload.id] = action.payload
-      localStorage.setItem(COLLECTIONS_IDS, JSON.stringify(savedCollections))
-      state.selectedCollections = savedCollections
-    },
-    removeCollection(state, action) {
-      let savedCollections = JSON.parse(localStorage.getItem(COLLECTIONS_IDS) as string)
-      delete savedCollections[`${action.payload}`]
-      localStorage.setItem(COLLECTIONS_IDS, JSON.stringify(savedCollections))
-      state.selectedCollections = savedCollections
-    }
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchShowcaseFeed.fulfilled, (state, action) => {
       state.data = action.payload
@@ -59,5 +37,4 @@ const showcaseFeed = createSlice({
   }
 })
 
-export const { saveCollection, removeCollection, fetchSavedCollections } = showcaseFeed.actions
 export default showcaseFeed.reducer
