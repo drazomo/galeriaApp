@@ -22,6 +22,8 @@ export const NavBarContainer = styled.nav`
     position: absolute;
     left: 0.5em;
     top: 0.6em;
+    border: none;
+    background-color: inherit;
   }
 
   @media (min-width: 768px) {
