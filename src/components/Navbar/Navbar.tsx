@@ -10,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Navbar = () => {
   const path = useLocation().pathname
   const [checked, setChecked] = useState(path === '/saved' ? 'saved': '/' ? 'photos':'themes')
+  const [ value, setValue ] = useState('')
 
   const iconButtons = [
     {sauce: <CameraIcon />, alt: 'Cam Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
@@ -21,13 +22,17 @@ const Navbar = () => {
     setChecked(value);
   };
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  }
+
   return (
     <NavBarContainer>
       <div className="searchBarContainer">
-        <NavSearchBar type='text' placeholder='Search...'/>
-        <div className='searchIcnContainer'>
+        <NavSearchBar type='text' placeholder='Search...' onChange={handleOnChange} value={value}/>
+        <button className='searchIcnContainer'>
           <SearchIcon className='searchIcn'/>
-        </div>
+        </button>
       </div>
       <NavIcnContainer>
         {iconButtons.map(({sauce, alt, name, className, link}) => (
