@@ -9,7 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Saved from './pages/Saved/Saved';
+import Saved from './pages/Saved';
 import Collections from './pages/Collections';
 import User from './pages/User';
 import Collection from './pages/Collection';
