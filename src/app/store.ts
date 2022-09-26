@@ -6,6 +6,7 @@ import userFeed from "../features/userFeed";
 import userPhotosFeed from "../features/userPhotosFeed";
 import collection from "../features/collection";
 import clientSaved from "../features/clientSaved";
+import searchResults from "../features/searchResults";
 
 export interface SliceInitState<T> {
   data: T[] | T
@@ -22,7 +23,8 @@ export const store = configureStore({
     userFeed,
     userPhotosFeed,
     userCollection,
-    clientSaved
+    clientSaved,
+    searchResults
   },
 });
 

@@ -1,17 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 
-export const SavedControls = styled.div`
-display: flex;
-width: 870px;
-margin-top: 1em;
-
-div:first-child {
-  margin-right: auto;
-  align-self: center;
-}
-`;
-
 export const LinksContainer = styled.div`
 display: flex;
 `;
@@ -39,3 +28,14 @@ font-weight: 500;
   margin-right: 1em;
 }
 `
+
+export const FilterControls = styled.div`
+display: flex;
+width: 870px;
+margin-top: 1em;
+
+div:first-child {
+  margin-right: auto;
+  align-self: center;
+}
+`;
