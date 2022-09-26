@@ -26,14 +26,19 @@ const Navbar = () => {
     setValue(e.target.value);
   }
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(value);
+  }
+
   return (
     <NavBarContainer>
-      <div className="searchBarContainer">
+      <form className="searchBarContainer" onSubmit={handleSubmit}>
         <NavSearchBar type='text' placeholder='Search...' onChange={handleOnChange} value={value}/>
         <button className='searchIcnContainer'>
           <SearchIcon className='searchIcn'/>
         </button>
-      </div>
+      </form>
       <NavIcnContainer>
         {iconButtons.map(({sauce, alt, name, className, link}) => (
           <NavIconItem key={`icnBtn_${alt.replace(/\w/g, '')}`}>
