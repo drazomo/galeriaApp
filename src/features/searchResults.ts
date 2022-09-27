@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { UnsplashDataProps } from "./feed";
 
 interface QueryProps {
   query: string
   page: number
 }
 
+interface ResultsProps {
+  total: number
+  total_pages: number
+  results: UnsplashDataProps[]
+}
+
 const initialState = {
-  collectionResults: [],
-  photoResults: [],
+  collectionResults: [] as unknown as ResultsProps,
+  photoResults: [] as unknown as ResultsProps,
   collectionPage: 1,
   photoPage: 1,
   isLoading: false,
