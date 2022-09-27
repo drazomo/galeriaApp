@@ -13,6 +13,7 @@ import Saved from './pages/Saved';
 import Collections from './pages/Collections';
 import User from './pages/User';
 import Collection from './pages/Collection';
+import Search from './pages/Search';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -30,7 +31,8 @@ root.render(
               <Route path='/saved' element={<Saved />} />
               <Route path='/themes' element={<Collections />} />
               <Route path='/user/:username' element={<User />} />
-              <Route path='collection/:id' element={<Collection />} />
+              <Route path='/collection/:id' element={<Collection />} />
+              <Route path='/search/:query' element={<Search />} />
           </Routes>
         </BrowserRouter>
       </Provider>
