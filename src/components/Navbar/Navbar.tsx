@@ -4,13 +4,14 @@ import {ReactComponent as CameraIcon} from './menu_cameraIcon.svg';
 import {ReactComponent as HeartIcon} from './menu_heartIcon.svg';
 import {ReactComponent as ThemeIcon} from './menu_themeIcon.svg';
 import {ReactComponent as SearchIcon} from './menu_searchIcon.svg';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
   const path = useLocation().pathname
   const [checked, setChecked] = useState(path === '/saved' ? 'saved': '/' ? 'photos':'themes')
   const [ value, setValue ] = useState('')
+  const nav = useNavigate();
 
   const iconButtons = [
     {sauce: <CameraIcon />, alt: 'Cam Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
@@ -28,7 +29,7 @@ const Navbar = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(value);
+    nav(`/search/${value}`)
   }
 
   return (

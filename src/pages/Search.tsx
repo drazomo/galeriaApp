@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
 import FilterHeader from '../components/FilterHeader'
 import { LinkBtn, LinkItem } from '../components/FilterHeader/FilterHeader.styled'
 import { Grid } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
 
+interface ParamsInterface {
+  query: string
+}
+
 const filterOptions = ['Photos', 'Collections']
 
 const Search = () => {
   const [checked, setChecked] = useState('photos')
+  const { query } = useParams<keyof ParamsInterface>() as ParamsInterface
+
   
   const handleLinkBtnClick = (value: string) => {
     setChecked(value);
