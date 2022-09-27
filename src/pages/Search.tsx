@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
+import CollectionCard from '../components/Collection/CollectionCards'
 import ExploreImage from '../components/ExploreImage'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
 import FilterHeader from '../components/FilterHeader'
 import { LinkBtn, LinkItem } from '../components/FilterHeader/FilterHeader.styled'
 import { Grid } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
-import { UnsplashDataProps } from '../features/feed'
 import { queryCollectionsSearch, queryPhotosSearch } from '../features/searchResults'
 
 interface ParamsInterface {
@@ -28,13 +28,18 @@ const Search = () => {
     }
   }, [])
 
-  const photos = (photoResults.results).map(foto => (
-    <ExploreImage
-      key={`${foto.id}_gridSavedCollection`}
+  const photos = photoResults.results && (photoResults.results).map(foto =>{ 
+    return <ExploreImage
+      key={`${foto.id}_gridSearchCollection`}
       item={foto}
       grid
     />
+  })
+
+  const collections = collectionResults.results && (collectionResults.results).map(option => (
+    <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} />
   ))
+
 
   
   const handleLinkBtnClick = (value: string) => {
@@ -44,7 +49,7 @@ const Search = () => {
   return (
     <>
     <Container>
-      <FilterHeader title='Saved photos & collections'>
+      <FilterHeader title={`${query.toLowerCase()} photos & collections`}>
         {
           filterOptions.map(option => (
             <LinkItem key={`filterSaved_${option}`}>
@@ -66,7 +71,7 @@ const Search = () => {
     <Container>
       <Grid>
         {
-          checked === 'photos' ? photos : 'collections'
+          checked === 'photos' ? photos : collections
         }
       </Grid>
     </Container>
