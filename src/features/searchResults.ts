@@ -7,15 +7,16 @@ interface QueryProps {
   page: number
 }
 
-interface ResultsProps<T> {
+interface DetailProps {
   total: number
   total_pages: number
-  results: T
 }
 
 const initialState = {
-  collectionResults: [] as unknown as ResultsProps<CollectionCardProps[]>,
-  photoResults: [] as unknown as ResultsProps<UnsplashDataProps[]>,
+  collectionResults: [] as CollectionCardProps[],
+  collectionDetails: {} as DetailProps,
+  photoResults: [] as UnsplashDataProps[],
+  photoDetails: {} as DetailProps,
   collectionPage: 1,
   photoPage: 1,
   isLoading: false,
@@ -38,17 +39,18 @@ const searchResults = createSlice({
   name: 'searchResults',
   reducers: {
     incrementCollectionPage: (state) => {
-      state.collectionPage += 1
+      state.collectionPage = state.collectionPage + 1
     },
     incrementPhotoPage: (state) => {
-      state.photoPage += 1
+      state.photoPage = state.photoPage + 1
     }
   },
   initialState,
   extraReducers: builder => {
     builder
       .addCase(queryPhotosSearch.fulfilled, (state, action) => {
-        state.photoResults = action.payload
+        state.photoResults = Array.from(new Set([...state.photoResults, ...action.payload.results]))
+        state.photoDetails = {...action.payload}
         state.hasError = false
         state.isLoading = false
       })
@@ -59,7 +61,8 @@ const searchResults = createSlice({
         state.hasError = true
       })
       .addCase(queryCollectionsSearch.fulfilled, (state, action) => {
-        state.collectionResults = action.payload
+        state.collectionResults = Array.from(new Set([...state.collectionResults, ...action.payload.results]))
+        state.collectionDetails = {...action.payload}
         state.hasError = false
         state.isLoading = false
       })
