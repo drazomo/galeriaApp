@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useParams } from 'react-router-dom'
-import { HashLoader } from 'react-spinners'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import CollectionDetails from '../components/CollectionDetails'
 import ExploreImage from '../components/ExploreImage'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
+import Loader from '../components/Loader'
 import { Grid } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
 import { fetchCollection, fetchCollectionDetail } from '../features/collection'
 import { nextPage } from '../features/collection'
@@ -74,7 +74,7 @@ const Collection = () => {
       </InfiniteScroll>
       </Container>
       )}
-      {isLoading && <HashLoader />}
+      {isLoading && <Loader />}
     </>
   )
 }

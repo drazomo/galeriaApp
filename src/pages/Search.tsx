@@ -8,6 +8,7 @@ import ExploreImage from '../components/ExploreImage'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
 import FilterHeader from '../components/FilterHeader'
 import { LinkBtn, LinkItem } from '../components/FilterHeader/FilterHeader.styled'
+import Loader from '../components/Loader'
 import { Grid } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
 import { incrementCollectionPage, incrementPhotoPage, queryCollectionsSearch, queryPhotosSearch } from '../features/searchResults'
 
@@ -20,9 +21,11 @@ const filterOptions = ['Photos', 'Collections']
 const Search = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
-  const { collectionPage, photoPage, photoResults, collectionResults, photoDetails, collectionDetails, isLoading } = useAppSelector(state => state.searchResults)
+  const { collectionPage, photoPage, photoResults, collectionResults, photoDetails, collectionDetails, isLoading, hasError } = useAppSelector(state => state.searchResults)
   const [checked, setChecked] = useState('photos')
   const { query } = useParams<keyof ParamsInterface>() as ParamsInterface
+  const hasPhotosData = !!photoResults.length && !hasError && !!photoDetails
+  const hasCollectionsData = !!collectionResults.length && !hasError && !!collectionDetails
 
   useEffect(() => {
     if(checked === 'photos'){
@@ -43,7 +46,10 @@ const Search = () => {
     }
   }, [isLoading, ref])
 
-  const collections = <InfiniteScroll 
+  const collections = (
+  <>
+  {hasCollectionsData && (
+  <InfiniteScroll 
   dataLength={collectionResults.length}
   hasMore={collectionPage <= collectionDetails.total_pages}
   next={() => dispatch(incrementCollectionPage())}
@@ -55,8 +61,15 @@ const Search = () => {
     ))}
   </Grid>
   </InfiniteScroll>
+  )}
+  {isLoading && <Loader />}
+  </>
+  )
 
-  const photos = <InfiniteScroll 
+  const photos = (
+  <>
+  {hasPhotosData && (
+  <InfiniteScroll 
   dataLength={photoResults.length}
   hasMore={photoPage <= photoDetails.total_pages}
   next={() => dispatch(incrementPhotoPage())}
@@ -72,6 +85,10 @@ const Search = () => {
     })}
   </Grid>
   </InfiniteScroll>
+  )}
+  {isLoading && <Loader />}
+  </>
+  )
 
   const handleLinkBtnClick = (value: string) => {
     setChecked(value);
