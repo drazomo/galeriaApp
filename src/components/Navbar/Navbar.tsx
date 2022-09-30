@@ -28,7 +28,9 @@ const Navbar = () => {
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     nav(`/search/${value}`)
+    nav(0)
   }
 
   return (

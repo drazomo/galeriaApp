@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useParams } from 'react-router-dom'
+import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import CollectionDetails from '../components/CollectionDetails'
 import ExploreImage from '../components/ExploreImage'
@@ -15,8 +16,9 @@ interface ParamsInterface {
 }
 
 const Collection = () => {
+  const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
-  const { data, page, detail } = useAppSelector(state => state.collection)
+  const { data, page, detail, isLoading } = useAppSelector(state => state.collection)
   const { id } = useParams<keyof ParamsInterface>() as ParamsInterface
 
   useEffect(() => {
@@ -24,6 +26,17 @@ const Collection = () => {
       dispatch(fetchCollection({id, page}))
     }
   }, [page])
+
+  useEffect(() => {
+    const loadingBar = ref.current
+    if(loadingBar) {
+      (isLoading) ? loadingBar.continuousStart() : loadingBar.complete()
+    }
+
+    return () => {
+      (loadingBar as LoadingBarRef).complete()
+    }
+  }, [isLoading])
 
   useEffect(() => {
     dispatch(fetchCollection({id, page: 1}))
@@ -36,6 +49,7 @@ const Collection = () => {
 
   return (
     <>
+      <LoadingBar color='#f11946' ref={ref} shadow={true} />
       <Container>
       <CollectionDetails item={detail} />
       <InfiniteScroll 
