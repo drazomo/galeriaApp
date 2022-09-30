@@ -41,7 +41,7 @@ const User = () => {
     return () => {
       (loadingBar as LoadingBarRef).complete()
     }
-  }, [isLoading, collectionIsLoading])
+  }, [isLoading, collectionIsLoading, ref])
 
   useEffect(() => {
     dispatch(fetchUserData(username))
