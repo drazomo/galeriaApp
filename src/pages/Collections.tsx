@@ -7,12 +7,18 @@ import { CardCollectionContainer } from '../components/Collection/Collection.sty
 import CollectionCard from '../components/Collection/CollectionCards'
 import ExploreImage from '../components/ExploreImage'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
+import Loader from '../components/Loader'
 
 const Collections = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
-  const {data, page, isLoading} = useAppSelector(state => state.feed)
-  const {data: showcase, isLoading: showcaseIsLoading} = useAppSelector(state => state.showcaseFeed)
+  const {data, page, isLoading, hasError} = useAppSelector(state => state.feed)
+  const {data: showcase, isLoading: showcaseIsLoading, hasError: showcaseHasError} = useAppSelector(state => state.showcaseFeed)
+  const showcaseHasData = !!showcase.length && !showcaseHasError
+  const hasLoadingShowcaseFinish = showcaseIsLoading && showcase
+  const feedHasData = !!data && !hasError
+  const hasLoadingFeedFinish = !isLoading && data
+
 
   useEffect(() => {
     dispatch(fetchFotos(page))
@@ -28,7 +34,7 @@ const Collections = () => {
     return () => {
       (loadingBar as LoadingBarRef).complete()
     }
-  }, [isLoading, showcaseIsLoading])
+  }, [isLoading, ref, showcaseIsLoading])
 
   useEffect(() => {
     if(page !== 1){
@@ -45,14 +51,16 @@ const Collections = () => {
     <>
     <LoadingBar color='#f11946' ref={ref} shadow={true} />
     <CardCollectionContainer>
-    {
+    {showcaseHasData && (
       (showcase as CollectionCardProps[]).map(({title, id, preview_photos}: CollectionCardProps) => (
         <CollectionCard id={id} catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
       ))
-    }
+    )}
+    {hasLoadingShowcaseFinish && <Loader />}
     </CardCollectionContainer>
       
-    <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={nextFn} hasMore={true} loader={<></>}>
+    {feedHasData && (
+      <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={nextFn} hasMore={true} loader={<></>}>
       {
         (data as UnsplashDataProps[])?.map((imgData) => {
           return (
@@ -63,6 +71,8 @@ const Collections = () => {
         )}
       )}
     </InfiniteScroll>
+    )}
+    {hasLoadingFeedFinish && <Loader />}
     </>
     )
   }
