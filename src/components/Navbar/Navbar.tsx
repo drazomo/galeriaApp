@@ -11,7 +11,7 @@ const Navbar = () => {
   const path = useLocation().pathname
   const [checked, setChecked] = useState(path === '/saved' ? 'saved': '/' ? 'photos':'themes')
   const [ value, setValue ] = useState('')
-  const nav = useNavigate();
+  const nav = useNavigate()
 
   const iconButtons = [
     {sauce: <CameraIcon />, alt: 'Cam Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
