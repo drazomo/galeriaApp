@@ -12,16 +12,18 @@ import { UnsplashDataProps } from '../features/feed'
 import { fetchUserCollection } from '../features/userCollection'
 import { fetchUserData, UnsplashUsrDataProps } from '../features/userFeed'
 import { fetchUserFotos, nextPage } from '../features/userPhotosFeed'
+import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 
 interface ParamsInterface {
   username: string
 }
 
 const User = () => {
+  const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
   const { data } = useAppSelector(state => state.userFeed)
-  const { data: userFotos, page } = useAppSelector(state => state.userPhotosFeed)
-  const { data: userCollections, page: collectionPage } = useAppSelector(state => state.userCollection)
+  const { data: userFotos, page, isLoading } = useAppSelector(state => state.userPhotosFeed)
+  const { data: userCollections, page: collectionPage, isLoading: collectionIsLoading } = useAppSelector(state => state.userCollection)
   const { username } = useParams<keyof ParamsInterface>() as ParamsInterface
 
   useEffect(() => {
@@ -29,6 +31,17 @@ const User = () => {
       dispatch(fetchUserFotos({page, user: username}))
     }
   }, [page])
+
+  useEffect(() => {
+    const loadingBar = ref.current
+    if(loadingBar) {
+      (isLoading || collectionIsLoading) ? loadingBar.continuousStart() : loadingBar.complete()
+    }
+
+    return () => {
+      (loadingBar as LoadingBarRef).complete()
+    }
+  }, [isLoading, collectionIsLoading])
 
   useEffect(() => {
     dispatch(fetchUserData(username))
@@ -43,6 +56,7 @@ const User = () => {
 
   return (
     <>
+    <LoadingBar color='#f11946' ref={ref} shadow={true} />
     <Container>
       <ImgAndUser item={data as UnsplashUsrDataProps}/>
       <ContainerFlexContainer>

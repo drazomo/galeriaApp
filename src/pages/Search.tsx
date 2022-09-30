@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useParams } from 'react-router-dom'
+import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import CollectionCard from '../components/Collection/CollectionCards'
 import ExploreImage from '../components/ExploreImage'
@@ -17,8 +18,9 @@ interface ParamsInterface {
 const filterOptions = ['Photos', 'Collections']
 
 const Search = () => {
+  const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
-  const { collectionPage, photoPage, photoResults, collectionResults, photoDetails, collectionDetails } = useAppSelector(state => state.searchResults)
+  const { collectionPage, photoPage, photoResults, collectionResults, photoDetails, collectionDetails, isLoading } = useAppSelector(state => state.searchResults)
   const [checked, setChecked] = useState('photos')
   const { query } = useParams<keyof ParamsInterface>() as ParamsInterface
 
@@ -28,7 +30,18 @@ const Search = () => {
     } else {
       dispatch(queryCollectionsSearch({query, page: collectionPage }))
     }
-  }, [photoPage, collectionPage, query])
+  }, [photoPage, collectionPage, query, checked])
+
+  useEffect(() => {
+    const loadingBar = ref.current
+    if(loadingBar) {
+      (isLoading) ? loadingBar.continuousStart() : loadingBar.complete()
+    }
+
+    return () => {
+      (loadingBar as LoadingBarRef).complete()
+    }
+  }, [isLoading, ref])
 
   const collections = <InfiniteScroll 
   dataLength={collectionResults.length}
@@ -66,6 +79,7 @@ const Search = () => {
 
   return (
     <>
+    <LoadingBar color='#f11946' ref={ref} shadow={true} />
     <Container>
       <FilterHeader title={`${query.toLowerCase()} photos & collections`}>
         {
