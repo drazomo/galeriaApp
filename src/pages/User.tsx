@@ -13,6 +13,7 @@ import { fetchUserCollection } from '../features/userCollection'
 import { fetchUserData, UnsplashUsrDataProps } from '../features/userFeed'
 import { fetchUserFotos, nextPage } from '../features/userPhotosFeed'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
+import Loader from '../components/Loader'
 
 interface ParamsInterface {
   username: string
@@ -22,9 +23,11 @@ const User = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
   const { data } = useAppSelector(state => state.userFeed)
-  const { data: userFotos, page, isLoading } = useAppSelector(state => state.userPhotosFeed)
-  const { data: userCollections, page: collectionPage, isLoading: collectionIsLoading } = useAppSelector(state => state.userCollection)
+  const { data: userFotos, page, isLoading: fotosIsLoading, hasError } = useAppSelector(state => state.userPhotosFeed)
+  const { data: userCollections, page: collectionPage, isLoading: collectionIsLoading, hasError: collectionHasError } = useAppSelector(state => state.userCollection)
   const { username } = useParams<keyof ParamsInterface>() as ParamsInterface
+  const hasUserFotosFinishLoading = !!(userFotos as UnsplashDataProps[]).length && !hasError
+  const hasUserCollectionsFinishLoading = !!(userCollections as UnsplashDataProps[]).length && !collectionHasError
 
   useEffect(() => {
     if(page !== 1){
@@ -35,13 +38,13 @@ const User = () => {
   useEffect(() => {
     const loadingBar = ref.current
     if(loadingBar) {
-      (isLoading || collectionIsLoading) ? loadingBar.continuousStart() : loadingBar.complete()
+      (fotosIsLoading || collectionIsLoading) ? loadingBar.continuousStart() : loadingBar.complete()
     }
 
     return () => {
       (loadingBar as LoadingBarRef).complete()
     }
-  }, [isLoading, collectionIsLoading, ref])
+  }, [fotosIsLoading, collectionIsLoading, ref])
 
   useEffect(() => {
     dispatch(fetchUserData(username))
@@ -59,12 +62,16 @@ const User = () => {
     <LoadingBar color='#f11946' ref={ref} shadow={true} />
     <Container>
       <ImgAndUser item={data as UnsplashUsrDataProps}/>
+    {hasUserCollectionsFinishLoading && (
       <ContainerFlexContainer>
         {(userCollections as UnsplashDataProps[]).map(item => (
           <UserAlbum item={item}/>
         ))}
       </ContainerFlexContainer>
+    )}
+    {collectionIsLoading && <Loader />}
     </Container>
+    {hasUserFotosFinishLoading && (
     <Container style={{marginBottom: '2em'}}>
     <InfiniteScroll 
       dataLength={(userFotos as UnsplashDataProps[])?.length} 
@@ -79,6 +86,8 @@ const User = () => {
       </Grid>
     </InfiniteScroll>
     </Container>
+    )}
+    {fotosIsLoading && <Loader />}
     </>
   )
 }
