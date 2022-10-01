@@ -156,7 +156,7 @@ border-radius: 8px;
 width: 265px;
 height: 265px;
 position: relative;
-overflow-y: hidden;
+overflow: hidden;
 
   :hover img {
     opacity: ${(props) => props.hoverEffect ? 0.3 : 1};
@@ -191,3 +191,19 @@ export const defaultImageContainerCSS = css`
   height: 100%;
   min-height: 530px;
 `;
+
+interface ImagePlaceholderProps {
+  opacity: number;
+  placeholderColor: string;
+}
+
+export const ImagePlaceholder = styled.div<ImagePlaceholderProps>`
+position: absolute;
+width: 100%;
+height: 100%;
+opacity: ${props => props.opacity};
+background-color: ${props => props.placeholderColor || 'gray'};
+width: 800px;
+border-radius: 8px;
+transition: 0.5s;
+`
