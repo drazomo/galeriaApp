@@ -6,6 +6,10 @@ interface DisplayImageProps {
   hoverEffect?: boolean
 }
 
+interface LrgImgContainerProps {
+  imageContainerCSS?: {}
+}
+
 export const CollectionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,15 +82,21 @@ export const ImgGridArea = styled.img<DisplayImageProps>`
 export const defaultImageCSS = css`
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  min-height: 530px;
 `;
 
+export const portraitImageCSS = css`
+  width: 100%;
+  height: 100%;
+  max-height: 800px;
+`;
 
-export const LrgImgContainer = styled.div`
-border-radius: 8px;
-background-color: gray;
-height: 100%;
-width: 92%;
+export const LrgImgContainer = styled.div<LrgImgContainerProps>`
+position: relative;
+${props => props.imageContainerCSS}
+
+padding-left: 35px;
+padding-right: 35px;
 
 margin-top: 1em;
 margin-bottom: 1.5em;
@@ -176,3 +186,8 @@ p {
 }
 `;
 
+export const defaultImageContainerCSS = css`
+  width: 100%;
+  height: 100%;
+  min-height: 530px;
+`;
