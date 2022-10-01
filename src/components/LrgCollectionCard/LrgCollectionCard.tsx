@@ -5,7 +5,7 @@ import {ReactComponent as BrokenStar} from '../../images/Iconly-Broken-Star.3c2f
 import {ReactComponent as DetailDots} from '../../images/Icon-show-detail.08802497.svg';
 import {ReactComponent as DownloadIcn} from '../../images/Icon-feather-download.f34f10a8.svg';
 import {ReactComponent as CloseIcn} from '../../images/Icon-metro-cross.svg';
-import { CollectionButtonBar, CollectionCardContainer, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
+import { CollectionButtonBar, CollectionCardContainer, defaultImageContainerCSS, InfoBox, InfoUsrContainer, InfoUsrImg, LrgImgContainer } from './LrgCollectionCard.styled'
 import { DownloadBtn, DownloadContainer } from '../PicModal/PicModal.styled';
 import { UnsplashDataProps } from '../../features/feed';
 import { useAppDispatch } from '../../app/hooks';
@@ -60,7 +60,7 @@ const LrgCollectionCard = (props: LrgPicProps) => {
           <p>{item.description}</p>
         </div>
         }
-      <LrgImgContainer>
+      <LrgImgContainer imageContainerCSS={defaultImageContainerCSS}>
           {children}
       </LrgImgContainer>
       <CollectionButtonBar>
