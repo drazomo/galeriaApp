@@ -3,6 +3,9 @@ export interface CollectionCardProps {
   title: string
   id: string
   preview_photos: any
+  cover_photo?: {
+    color: string
+  }
 }
 
 const initialState = {
