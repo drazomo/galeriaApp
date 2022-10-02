@@ -16,6 +16,9 @@ export const MosaicGrid = styled.div`
   .my-masonry-grid_column > div {
     /* change div to reference your elements you put in <Masonry> */
     margin-bottom: 1em;
+    border-radius: 16px;
+    opacity: 1;
+    transition: ease 0.5s;
   }
 
   @media ${device.mobileS}{
@@ -37,11 +40,14 @@ export const MosaicGrid = styled.div`
 
 export const MosaicBody = styled.div`
   cursor: pointer;
+  transition: 0.5s ease;
+
   img {
     border-radius: 16px;
     width: 100%;
     display: block;
     margin-bottom: 1em;
+    transition: 0.5s ease;
   }
 `;
 
@@ -51,4 +57,16 @@ export const MosaicContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+`;
+
+interface MosaicDivProps {
+  opacity?: number;
+  placeholderColor?: string;
+}
+
+export const MosaicDiv = styled.div<MosaicDivProps>`
+opacity: ${props => props.opacity};
+background-color: ${props => props.placeholderColor || 'gray'};
+border-radius: 8px;
+transition: 0.5s ease;
 `;
