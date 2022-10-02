@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { device, theme } from "../../styles/theme";
 
 export const LinksContainer = styled.div`
 display: flex;
@@ -31,11 +31,30 @@ font-weight: 500;
 
 export const FilterControls = styled.div`
 display: flex;
-width: 870px;
 margin-top: 1em;
+
+@media ${device.mobileS}{
+    width: 300px;
+    margin-left: 1em;
+  }
+  
+@media ${device.mobileM}{
+    width: 375px;
+  }
+
+@media ${device.tablet}{
+    width: 700px;
+  }
+
+@media ${device.laptop}{
+    width: 870px;
+  }
 
 div:first-child {
   margin-right: auto;
+}
+
+div {
   align-self: center;
 }
 `;

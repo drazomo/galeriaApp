@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../styles/theme';
+import { size, theme } from '../../styles/theme';
 
 export const CardBase = styled.div`
   display: flex;
