@@ -5,6 +5,7 @@ import {ReactComponent as HeartIcon} from './menu_heartIcon.svg';
 import {ReactComponent as ThemeIcon} from './menu_themeIcon.svg';
 import {ReactComponent as SearchIcon} from './menu_searchIcon.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { theme } from '../../styles/theme';
 
 
 const Navbar = () => {
@@ -14,9 +15,9 @@ const Navbar = () => {
   const nav = useNavigate()
 
   const iconButtons = [
-    {sauce: <CameraIcon />, alt: 'Cam Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/'},
-    {sauce: <HeartIcon />, alt: 'Heart Icon', name: 'Saved', className: 'cls__icn_btn_heart', link: '/saved'},
-    {sauce: <ThemeIcon />, alt: 'Theme Icon', name: 'Themes', className: 'cls__icn_btn_theme', link: '/themes'}
+    {sauce: <CameraIcon />, alt: 'Cam Icon', name: 'Photos', className: 'cls__icn_btn_photos', link: '/', color: theme.colors.selectHoverFotosIcn},
+    {sauce: <HeartIcon />, alt: 'Heart Icon', name: 'Saved', className: 'cls__icn_btn_saved', link: '/saved', color: theme.colors.selectHoverSavedIcn},
+    {sauce: <ThemeIcon />, alt: 'Theme Icon', name: 'Themes', className: 'cls__icn_btn_themes', link: '/themes', color: ''}
   ]
 
   const handleIconClick = (value: string) => {
@@ -42,7 +43,7 @@ const Navbar = () => {
         </button>
       </form>
       <NavIcnContainer>
-        {iconButtons.map(({sauce, alt, name, className, link}) => (
+        {iconButtons.map(({sauce, alt, name, className, link, color}) => (
           <NavIconItem key={`icnBtn_${alt.replace(/\w/g, '')}`}>
             <input 
               type='radio' 
@@ -52,7 +53,7 @@ const Navbar = () => {
               checked={checked === name.toLowerCase() && true}
             />
             <Link to={link}>
-              <NavIconBtn className={className} onClick={() => handleIconClick(name.toLowerCase())}>
+              <NavIconBtn className={className} onClick={() => handleIconClick(name.toLowerCase())} bkgColor={checked === name.toLowerCase() ? color : 'inherit'}>
                   <div style={{ width: '28px', height: '25px'}}>
                     {sauce}
                   </div>

@@ -97,12 +97,16 @@ export const NavIconTitle = styled.div`
   }
 `;
 
-export const NavIconBtn = styled.button`
+interface NavIconBtnProps {
+  bkgColor: string;
+}
+
+export const NavIconBtn = styled.button<NavIconBtnProps>`
   cursor: pointer;
   border: none;
   border-radius: 8px;
   padding: 0.5em;
-  background-color: ${theme.colors.backgroundWhite};
+  background-color: ${props => props.bkgColor || 'inherit'};
 
   a {
     display: flex;
@@ -121,12 +125,12 @@ export const NavIconItem = styled.div`
   input[type='radio'] {
     display: none;
 
-    :checked {
+    :checked  {
       + button.cls__icn_btn_photos {
         background-color: ${theme.colors.selectHoverFotosIcn};
       }
 
-      + button.cls__icn_btn_heart {
+      + button.cls__icn_btn_saved {
         background-color: ${theme.colors.selectHoverSavedIcn};
       }
     }
@@ -138,7 +142,7 @@ export const NavIconItem = styled.div`
     }
   }
 
-  .cls__icn_btn_heart {
+  .cls__icn_btn_saved {
     margin: 0 0.4em;
 
     :hover {
@@ -146,7 +150,7 @@ export const NavIconItem = styled.div`
     }
   }
 
-  .cls__icn_btn_theme {
+  .cls__icn_btn_themes {
     margin-right: 0.5em;
   }
 
