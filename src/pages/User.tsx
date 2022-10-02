@@ -57,6 +57,8 @@ const User = () => {
     dispatch(nextPage())
   }
 
+  console.log(userCollections)
+
   return (
     <>
     <LoadingBar color='#f11946' ref={ref} shadow={true} />

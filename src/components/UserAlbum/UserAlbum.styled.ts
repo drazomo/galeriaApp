@@ -22,7 +22,6 @@ export const AlbumCover = styled.img`
   height: 86px;
 
   border-radius: 8px;
-  background-color: grey;
 `;
 
 export const AlbumContainer = styled.div`

@@ -8,12 +8,14 @@ export interface ImgProperties {
   };
   id: string;
   description?: string;
+  color?: string;
 }
 
 export interface UnsplashDataProps extends ImgProperties {
   title?: string;
   total_photos: number;
   cover_photo: {
+    color: string;
     urls: {
       regular: string;
       small: string;

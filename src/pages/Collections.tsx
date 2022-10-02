@@ -15,9 +15,8 @@ const Collections = () => {
   const {data, page, isLoading, hasError} = useAppSelector(state => state.feed)
   const {data: showcase, isLoading: showcaseIsLoading, hasError: showcaseHasError} = useAppSelector(state => state.showcaseFeed)
   const showcaseHasData = !!showcase.length && !showcaseHasError
-  const hasLoadingShowcaseFinish = showcaseIsLoading && showcase
-  const feedHasData = !!data && !hasError
-  const hasLoadingFeedFinish = !isLoading && data
+  const hasLoadingFeedFinish = !!(data as UnsplashDataProps[]).length && !hasError
+
 
 
   useEffect(() => {
@@ -50,19 +49,18 @@ const Collections = () => {
   return (
     <>
     <LoadingBar color='#f11946' ref={ref} shadow={true} />
+    {showcaseIsLoading && <Loader />}
     <CardCollectionContainer>
     {showcaseHasData && (
-      (showcase as CollectionCardProps[]).map(({title, id, preview_photos}: CollectionCardProps) => (
-        <CollectionCard id={id} catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`}/>
-      ))
+      showcase as CollectionCardProps[]).map(({title, id, preview_photos, cover_photo}: CollectionCardProps) => (
+        <CollectionCard id={id} catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`} color={cover_photo?.color}/>
+      )
     )}
-    {hasLoadingShowcaseFinish && <Loader />}
     </CardCollectionContainer>
       
-    {feedHasData && (
+    {hasLoadingFeedFinish && (
       <InfiniteScroll dataLength={(data as UnsplashDataProps[])?.length} next={nextFn} hasMore={true} loader={<></>}>
-      {
-        (data as UnsplashDataProps[])?.map((imgData) => {
+      {(data as UnsplashDataProps[])?.map((imgData) => {
           return (
             <ExploreImage
               key={imgData.id} 
@@ -73,7 +71,7 @@ const Collections = () => {
       )}
     </InfiniteScroll>
     )}
-    {hasLoadingFeedFinish && <Loader />}
+    {isLoading && <Loader />}
     </>
     )
   }

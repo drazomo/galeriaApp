@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from '../../styles/theme';
+import { device, size, theme } from '../../styles/theme';
 
 interface DisplayImageProps {
   imageCSS?: {}
@@ -61,10 +61,35 @@ export const ImgArea = styled.img<DisplayImageProps>`
 export const Grid = styled.div`
   display: grid;
   margin-top: 2em;
+  
+  margin-left: 1em;
+  margin-right: 1em;
 
+  > div {
+    margin-bottom: 1em;
+  }
+
+  > a {
+    margin-bottom: 1em;
+  }
+  
+  @media (min-width: ${size.mobileL}) {
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 1em;
+  grid-column-gap: 1em;
+  }
+  
+  @media (min-width: ${size.tablet}) {
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 2em;
+  grid-column-gap: 2em;
+  }
+
+  @media (min-width: ${size.laptop}) {
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2em;
   grid-column-gap: 2em;
+  }
 `;
 
 export const ImgGridArea = styled.img<DisplayImageProps>`
@@ -156,7 +181,7 @@ border-radius: 8px;
 width: 265px;
 height: 265px;
 position: relative;
-overflow-y: hidden;
+overflow: hidden;
 
   :hover img {
     opacity: ${(props) => props.hoverEffect ? 0.3 : 1};
@@ -165,6 +190,22 @@ overflow-y: hidden;
   :hover div {
     opacity: ${(props) => props.hoverEffect ? 1 : 0};
   }
+
+@media ${device.mobileS}{
+    width: 120px;
+    height: 120px;
+}
+
+@media ${device.mobileM}{
+    width: 150px;
+    height: 150px;
+}
+
+@media ${device.tablet}{
+width: 265px;
+height: 265px;
+}
+
 `;
 
 export const Overlay = styled.div`
@@ -191,3 +232,19 @@ export const defaultImageContainerCSS = css`
   height: 100%;
   min-height: 530px;
 `;
+
+interface ImagePlaceholderProps {
+  opacity: number;
+  placeholderColor: string;
+}
+
+export const ImagePlaceholder = styled.div<ImagePlaceholderProps>`
+position: absolute;
+width: 100%;
+height: 100%;
+opacity: ${props => props.opacity};
+background-color: ${props => props.placeholderColor || 'gray'};
+width: 800px;
+border-radius: 8px;
+transition: 0.5s;
+`
