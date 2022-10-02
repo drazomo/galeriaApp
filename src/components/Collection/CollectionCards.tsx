@@ -6,13 +6,14 @@ interface CollectionCardProps {
   imgUrl: string
   id: string
   color?: string
+  className?: string
 }
 
-const CollectionCard = ({catName, imgUrl, id, color}: CollectionCardProps) => {
+const CollectionCard = ({catName, imgUrl, id, color, className}: CollectionCardProps) => {
 
   return (
     <a href={`collection/${id}`}>
-      <CardBase style={{backgroundImage: `url("${imgUrl}")`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: `${color}`}}>
+      <CardBase className={className} style={{backgroundImage: `url("${imgUrl}")`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundColor: `${color}`}}>
         <CardTitle>{catName}</CardTitle>
       </CardBase>
     </a>
