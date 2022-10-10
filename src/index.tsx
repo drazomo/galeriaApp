@@ -14,6 +14,7 @@ import Collections from './pages/Collections';
 import User from './pages/User';
 import Collection from './pages/Collection';
 import Search from './pages/Search';
+import Error404 from './pages/Error404';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -33,6 +34,7 @@ root.render(
               <Route path='/user/:username' element={<User />} />
               <Route path='/collection/:id' element={<Collection />} />
               <Route path='/search/:query' element={<Search />} />
+              <Route path='*' element={<Error404 />} />
           </Routes>
         </BrowserRouter>
       </Provider>
