@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import CollectionCard from '../components/Collection/CollectionCards'
@@ -21,6 +21,7 @@ const filterOptions = ['Photos', 'Collections']
 const Search = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
+  const nav = useNavigate()
   const { collectionPage, photoPage, photoResults, collectionResults, photoDetails, collectionDetails, isLoading, hasError } = useAppSelector(state => state.searchResults)
   const [checked, setChecked] = useState('photos')
   const { query } = useParams<keyof ParamsInterface>() as ParamsInterface
@@ -122,6 +123,7 @@ const Search = () => {
       checked === 'photos' ? photos : collections
     }
     </Container>
+    {hasError && nav('/error')}
     </>
   )
 }

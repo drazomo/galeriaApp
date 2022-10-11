@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import ExploreImage from '../components/ExploreImage'
 import ImgAndUser from '../components/ImgAndUser'
@@ -22,6 +22,7 @@ interface ParamsInterface {
 const User = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
+  const nav = useNavigate()
   const { data } = useAppSelector(state => state.userFeed)
   const { data: userFotos, page, isLoading: fotosIsLoading, hasError } = useAppSelector(state => state.userPhotosFeed)
   const { data: userCollections, page: collectionPage, isLoading: collectionIsLoading, hasError: collectionHasError } = useAppSelector(state => state.userCollection)
@@ -90,6 +91,8 @@ const User = () => {
     </Container>
     )}
     {fotosIsLoading && <Loader />}
+    {collectionHasError && nav('/error')}
+    {hasError && nav('/error')}
     </>
   )
 }

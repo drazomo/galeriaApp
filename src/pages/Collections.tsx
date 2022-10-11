@@ -8,10 +8,12 @@ import CollectionCard from '../components/Collection/CollectionCards'
 import ExploreImage from '../components/ExploreImage'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 import Loader from '../components/Loader'
+import { useNavigate } from 'react-router-dom'
 
 const Collections = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
+  const nav = useNavigate()
   const {data, page, isLoading, hasError} = useAppSelector(state => state.feed)
   const {data: showcase, isLoading: showcaseIsLoading, hasError: showcaseHasError} = useAppSelector(state => state.showcaseFeed)
   const showcaseHasData = !!showcase.length && !showcaseHasError
@@ -72,6 +74,7 @@ const Collections = () => {
     </InfiniteScroll>
     )}
     {isLoading && <Loader />}
+    {hasError && nav('/error')}
     </>
     )
   }

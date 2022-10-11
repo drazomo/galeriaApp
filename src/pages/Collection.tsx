@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import LoadingBar, { LoadingBarRef } from 'react-top-loading-bar'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import CollectionDetails from '../components/CollectionDetails'
@@ -19,6 +19,7 @@ interface ParamsInterface {
 const Collection = () => {
   const ref = React.createRef<LoadingBarRef>()
   const dispatch = useAppDispatch()
+  const nav = useNavigate()
   const { data, page, detail, isLoading, hasError } = useAppSelector(state => state.collection)
   const { id } = useParams<keyof ParamsInterface>() as ParamsInterface
   const hasData = !!data.length && !hasError && !!detail
@@ -75,6 +76,7 @@ const Collection = () => {
       </Container>
       )}
       {isLoading && <Loader />}
+      {hasError && nav('/error')}
     </>
   )
 }
