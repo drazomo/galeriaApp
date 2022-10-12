@@ -25,17 +25,11 @@ const ExploreImage = ({item, grid, hover, imageCSS, portrait}:ExploreImageProps)
   };
 
   return (
-    <>
-    <PicModal 
-      key={item.id} 
-      item={item} 
-      onClose={closeModal} 
-      open={modalOpen}
-    />
-    {
     grid 
-      ? 
-      <ImgGridDiv hoverEffect={hover}>
+      ?
+      <>
+      <PicModal item={item} onClose={closeModal} open={modalOpen}/>
+      <ImgGridDiv hoverEffect={hover} onClick={showModal} key={`xloprGrid_${item.id}`}>
         <Overlay>
           <p>
             {item.likes} likes
@@ -45,14 +39,14 @@ const ExploreImage = ({item, grid, hover, imageCSS, portrait}:ExploreImageProps)
         <ImgGridArea 
           src={item.urls.regular}
           alt={item.description}
-          onClick={showModal}
           imageCSS={{objectFit: 'cover'}}
           onLoad={() => setOpacity(0)}
         />
       </ImgGridDiv>
+      </>
       :
-    <LrgCollectionCard key={item.id} item={item}>
-      <ImagePlaceholder opacity={opacity} placeholderColor={item.color as string}/>
+    <LrgCollectionCard item={item} key={`xloprLrgCrd_${item.id}`}>
+      <PicModal item={item} onClose={closeModal} open={modalOpen}/>
       <ImgArea 
         src={item.urls.regular} 
         alt={item.description}
@@ -60,9 +54,8 @@ const ExploreImage = ({item, grid, hover, imageCSS, portrait}:ExploreImageProps)
         imageCSS={portrait ? portraitImageCSS : defaultImageCSS}
         onLoad={() => setOpacity(0)}
       />
+      <ImagePlaceholder opacity={opacity} placeholderColor={item.color as string}/>
     </LrgCollectionCard>
-    }
-    </>
   )
 }
 
