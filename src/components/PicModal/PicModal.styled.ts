@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "../../styles/theme";
+import { size, theme } from "../../styles/theme";
 
 export const ModalBkg = styled.div`
 width: 100%;
@@ -35,6 +35,11 @@ export const ModalContainer = styled.div`
   max-width: 830px;
   padding-left: 32px;
   padding-right: 37px;
+
+  @media (max-width: ${size.mobileS}) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 
@@ -68,4 +73,8 @@ export const ModalImgArea = styled.img`
   object-fit: cover;
   border-radius: 8px;
   min-width: 600px;
+
+  @media (max-width: ${size.mobileS}) {
+    min-width: 250px;
+  }
 `;

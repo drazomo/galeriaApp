@@ -32,6 +32,16 @@ export const CollectionCardContainer = styled.div`
       font-weight: 500;
     }
   }
+
+  @media (max-width: ${size.mobileS}) {
+    width: 300px
+  }
+
+  @media (min-width: ${size.laptop}) {
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 2em;
+  grid-column-gap: 2em;
+  }
 `
 
 export const CollectionButtonBar = styled.div`
@@ -39,6 +49,11 @@ display: flex;
 justify-content: space-between;
 width: 780px;
 margin-bottom: 2em;
+
+@media (max-width: ${size.mobileS}) {
+    width: 270px;
+    margin-bottom: 0px;
+}
 
 .likesDiv {
   display: flex;
@@ -108,6 +123,10 @@ export const defaultImageCSS = css`
   width: 100%;
   height: 100%;
   min-height: 530px;
+
+  @media (max-width: ${size.mobileS}) {
+      min-height: 300px;
+  }
 `;
 
 export const portraitImageCSS = css`
@@ -141,6 +160,10 @@ margin-right: auto;
   display: flex;
   align-items: center;
 }
+
+@media (max-width: ${size.mobileS}) {
+  width: 85%;
+  }
 `
 
 export const InfoUsrContainer = styled.a`
@@ -231,6 +254,10 @@ export const defaultImageContainerCSS = css`
   width: 100%;
   height: 100%;
   min-height: 530px;
+
+  @media (max-width: ${size.mobileS}) {
+      min-height: 0px;
+  }
 `;
 
 interface ImagePlaceholderProps {
@@ -247,4 +274,8 @@ background-color: ${props => props.placeholderColor || 'gray'};
 width: 800px;
 border-radius: 8px;
 transition: 0.5s;
+
+@media (max-width: ${size.mobileS}) {
+    width: 250px
+  }
 `
