@@ -41,6 +41,10 @@ export const CollectionCardContainer = styled.div`
     width: 360px
   }
 
+  @media (max-width: ${size.mobileL}) {
+    width: 400px
+  }
+
   @media (min-width: ${size.laptop}) {
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2em;
@@ -62,6 +66,10 @@ margin-bottom: 2em;
 @media (max-width: ${size.mobileM}) {
     width: 270px;
     margin-bottom: 16px;
+}
+
+@media (max-width: ${size.mobileL}) {
+    width: 340px
   }
 
 .likesDiv {
@@ -170,7 +178,7 @@ margin-right: auto;
   align-items: center;
 }
 
-@media (max-width: ${size.mobileM}) {
+@media (max-width: ${size.mobileL}) {
   width: 85%;
   }
 `
@@ -290,5 +298,9 @@ transition: 0.5s;
 
 @media (max-width: ${size.mobileM}) {
     width: 300px
+  }
+
+  @media (max-width: ${size.mobileM}) {
+    width: 400px
   }
 `
