@@ -36,11 +36,11 @@ export const CollectionCardContainer = styled.div`
   @media (max-width: ${size.mobileS}) {
     width: 300px
   }
-
+  
   @media (max-width: ${size.mobileM}) {
     width: 360px
   }
-
+  
   @media (min-width: ${size.laptop}) {
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2em;
@@ -63,7 +63,6 @@ margin-bottom: 2em;
     width: 270px;
     margin-bottom: 16px;
   }
-
 .likesDiv {
   display: flex;
 
@@ -287,7 +286,7 @@ transition: 0.5s;
 @media (max-width: ${size.mobileS}) {
     width: 250px
   }
-
+  
 @media (max-width: ${size.mobileM}) {
     width: 300px
   }
