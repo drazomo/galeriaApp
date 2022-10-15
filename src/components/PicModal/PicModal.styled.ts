@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { size, theme } from "../../styles/theme";
 
 export const ModalBkg = styled.div`
@@ -30,11 +30,9 @@ export const ModalContainer = styled.div`
   right: 0;
   bottom: 0;
   
-  margin: auto;
-  max-height: 890px;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 830px;
-  padding-left: 32px;
-  padding-right: 37px;
 
   @media (max-width: ${size.mobileL}) {
     padding-left: 10px;
@@ -69,16 +67,16 @@ export const DownloadBtn = styled.button`
 export const ModalImgArea = styled.img`
   width: 100%;
   height: 100%;
-  max-height: 600px;
+  max-height: 500px;
   object-fit: cover;
   border-radius: 8px;
   min-width: 600px;
 
-  @media (max-width: ${size.mobileM}) {
-    min-width: 250px;
+  @media (max-width: ${size.mobileL}) {
+    min-width: 340px;
   }
 
-  @media (max-width: ${size.mobileS}) {
+  @media (max-width: ${size.mobileM}) {
     min-width: 250px;
   }
 `;
