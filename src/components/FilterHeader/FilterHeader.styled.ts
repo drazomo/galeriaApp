@@ -35,7 +35,6 @@ margin-top: 1em;
 
 @media ${device.mobileS}{
     width: 300px;
-    margin-left: 1em;
   }
   
 @media ${device.mobileM}{

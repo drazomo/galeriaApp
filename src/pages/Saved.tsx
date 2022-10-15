@@ -5,7 +5,7 @@ import ExploreImage from '../components/ExploreImage'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
 import FilterHeader from '../components/FilterHeader'
 import { LinkBtn, LinkItem } from '../components/FilterHeader/FilterHeader.styled'
-import { Grid } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
+import { Grid, SavedGridCollections } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
 import { fetchSavedCollections } from '../features/clientSaved'
 import { UnsplashDataProps } from '../features/feed'
 import { CollectionCardProps } from '../features/showcaseFeed'
@@ -22,7 +22,7 @@ const Saved = () => {
   }, [checked, dispatch])
 
   const filteredCollections = (Object.values(selectedCollections) as CollectionCardProps[]).map(option => (
-      <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} />
+    <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} />
   ))
 
   const filteredPhotos = (Object.values(selectedPhotos) as UnsplashDataProps[]).map(foto => (
@@ -58,12 +58,10 @@ const Saved = () => {
             ))
         }
       </FilterHeader>
-    <Container>
-        <Grid>
-          {
-            checked === 'photos' ? filteredPhotos : filteredCollections
-          }
-        </Grid>
+      <Container>
+        {
+          checked === 'photos' ? <Grid>{filteredPhotos}</Grid> : <SavedGridCollections>{filteredCollections}</SavedGridCollections>
+        }
       </Container>
     </Container>
     </>

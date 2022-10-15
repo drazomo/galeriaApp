@@ -6,7 +6,6 @@ export const CardBase = styled.div`
   justify-items: center;
   align-items: flex-end;
   background-color: ${theme.colors.textSecondaryGray};
-  margin-left: 1em;
   height: 234px;
   border-radius: 10px;
   cursor: pointer;
@@ -14,6 +13,10 @@ export const CardBase = styled.div`
 
   :last-child {
     margin-right: 1em;
+  }
+
+  @media (max-width: ${size.mobileS}) {
+    min-width: 150px;
   }
 
   @media (min-width: 768px) {

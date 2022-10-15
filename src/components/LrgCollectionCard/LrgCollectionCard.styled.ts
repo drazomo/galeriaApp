@@ -116,33 +116,27 @@ export const Grid = styled.div`
   display: grid;
   margin-top: 2em;
   
-  margin-left: 1em;
-  margin-right: 1em;
-
-  > div {
-    margin-bottom: 1em;
-  }
-
-  > a {
-    margin-bottom: 1em;
-  }
-
-  @media (min-width: ${size.laptop}) {
-    grid-template-columns: repeat(3, 1fr);
-    grid-row-gap: 2em;
-    grid-column-gap: 2em;
-  }
-
   @media (min-width: ${size.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 2em;
-    grid-column-gap: 2em;
-  }
-  
-  @media (min-width: ${size.mobileL}) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 1em;
     grid-column-gap: 1em;
+  }
+
+  @media (max-width: ${size.mobileL}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 0.5em;
+    grid-column-gap: 0.5em;
+  }
+
+  @media (max-width: ${size.mobileM}){
+    margin-left: 0.5em;
+  }
+
+  @media (max-width: ${size.mobileS}) {
+    margin-left: 1.6em;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 0.5em;
+    grid-column-gap: 0.5em;
   }
 `;
 
@@ -310,6 +304,10 @@ width: 800px;
 border-radius: 8px;
 transition: 0.5s;
 
+@media (max-width: ${size.mobileS}) {
+    width: 250px
+}
+
 @media (max-width: ${size.tablet}) {
     width: 600px
 }
@@ -317,8 +315,34 @@ transition: 0.5s;
 @media (max-width: ${size.mobileM}) {
     width: 400px
 }
+`
+
+export const SavedGridCollections = styled.div`
+display: grid;
+margin-top: 2em;
 
 @media (max-width: ${size.mobileS}) {
-    width: 250px
+  display: flex;
+  flex-direction: column;
+
+  div {
+    margin-bottom: 1em;
+  }
 }
-`
+
+@media (min-width: ${size.mobileM}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 0.5em;
+    grid-column-gap: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: ${size.tablet}) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 1.5em;
+    grid-column-gap: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+`;
