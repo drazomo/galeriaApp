@@ -36,8 +36,8 @@ export const ModalContainer = styled.div`
   padding-left: 32px;
   padding-right: 37px;
 
-  @media (max-width: ${size.mobileS}) {
-    padding-left: 15px;
+  @media (max-width: ${size.mobileL}) {
+    padding-left: 10px;
     padding-right: 15px;
   }
 `;
@@ -73,6 +73,10 @@ export const ModalImgArea = styled.img`
   object-fit: cover;
   border-radius: 8px;
   min-width: 600px;
+
+  @media (max-width: ${size.mobileM}) {
+    min-width: 250px;
+  }
 
   @media (max-width: ${size.mobileS}) {
     min-width: 250px;

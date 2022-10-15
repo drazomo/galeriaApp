@@ -33,22 +33,26 @@ export const CollectionCardContainer = styled.div`
     }
   }
 
-  @media (max-width: ${size.mobileS}) {
-    width: 300px
+  @media (min-width: ${size.laptop}) {
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 2em;
+  grid-column-gap: 2em;
   }
 
-  @media (max-width: ${size.mobileM}) {
-    width: 360px
+  @media (max-width: ${size.tablet}) {
+    width: 700px
   }
 
   @media (max-width: ${size.mobileL}) {
     width: 400px
   }
 
-  @media (min-width: ${size.laptop}) {
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 2em;
-  grid-column-gap: 2em;
+  @media (max-width: ${size.mobileM}) {
+    width: 360px
+  }
+
+  @media (max-width: ${size.mobileS}) {
+    width: 300px
   }
 `
 
@@ -58,9 +62,12 @@ justify-content: space-between;
 width: 780px;
 margin-bottom: 2em;
 
-@media (max-width: ${size.mobileS}) {
-    width: 270px;
-    margin-bottom: 0px;
+@media (max-width: ${size.tablet}) {
+    width: 620px
+}
+
+@media (max-width: ${size.mobileL}) {
+    width: 340px
 }
 
 @media (max-width: ${size.mobileM}) {
@@ -68,9 +75,10 @@ margin-bottom: 2em;
     margin-bottom: 16px;
 }
 
-@media (max-width: ${size.mobileL}) {
-    width: 340px
-  }
+@media (max-width: ${size.mobileS}) {
+    width: 270px;
+    margin-bottom: 0px;
+}
 
 .likesDiv {
   display: flex;
@@ -104,23 +112,23 @@ export const Grid = styled.div`
   > a {
     margin-bottom: 1em;
   }
-  
-  @media (min-width: ${size.mobileL}) {
-  grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 1em;
-  grid-column-gap: 1em;
-  }
-  
-  @media (min-width: ${size.tablet}) {
-  grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 2em;
-  grid-column-gap: 2em;
-  }
 
   @media (min-width: ${size.laptop}) {
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 2em;
   grid-column-gap: 2em;
+  }
+
+  @media (min-width: ${size.tablet}) {
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 2em;
+  grid-column-gap: 2em;
+  }
+  
+  @media (min-width: ${size.mobileL}) {
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: 1em;
+  grid-column-gap: 1em;
   }
 `;
 
@@ -231,9 +239,9 @@ overflow: hidden;
     opacity: ${(props) => props.hoverEffect ? 1 : 0};
   }
 
-@media ${device.mobileS}{
-    width: 120px;
-    height: 120px;
+@media ${device.tablet}{
+    width: 265px;
+    height: 265px;
 }
 
 @media ${device.mobileM}{
@@ -241,11 +249,10 @@ overflow: hidden;
     height: 150px;
 }
 
-@media ${device.tablet}{
-width: 265px;
-height: 265px;
+@media ${device.mobileS}{
+    width: 120px;
+    height: 120px;
 }
-
 `;
 
 export const Overlay = styled.div`
@@ -292,15 +299,15 @@ width: 800px;
 border-radius: 8px;
 transition: 0.5s;
 
-@media (max-width: ${size.mobileS}) {
-    width: 250px
-  }
+@media (max-width: ${size.tablet}) {
+    width: 600px
+}
 
 @media (max-width: ${size.mobileM}) {
-    width: 300px
-  }
-
-  @media (max-width: ${size.mobileM}) {
     width: 400px
-  }
+}
+
+@media (max-width: ${size.mobileS}) {
+    width: 250px
+}
 `
