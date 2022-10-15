@@ -44,7 +44,7 @@ const Navbar = () => {
       </form>
       <NavIcnContainer>
         {iconButtons.map(({sauce, alt, name, className, link, color}) => (
-          <NavIconItem key={`icnBtn_${alt.replace(/\w/g, '')}`}>
+          <NavIconItem key={`${alt.replace(/\w/g, '') + Math.random() * 100}`}>
             <input 
               type='radio' 
               name='toggle_nav_pages' 

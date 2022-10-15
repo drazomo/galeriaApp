@@ -65,7 +65,7 @@ const Collection = () => {
         <Grid>
           {(data as UnsplashDataProps[]).map(foto => (
             <ExploreImage
-              key={`${foto.id}_gridCollection`}
+              key={`${foto.id}_gridCollection_${Math.random()}`}
               item={foto}
               grid
               hover

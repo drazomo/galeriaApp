@@ -22,12 +22,12 @@ const Saved = () => {
   }, [checked, dispatch])
 
   const filteredCollections = (Object.values(selectedCollections) as CollectionCardProps[]).map(option => (
-    <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} />
+    <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} key={option.id + 'colCard' + Math.random()}/>
   ))
 
   const filteredPhotos = (Object.values(selectedPhotos) as UnsplashDataProps[]).map(foto => (
     <ExploreImage
-      key={`${foto.id}_gridSavedCollection`}
+      key={`${foto.id}_gridSavedCollection_${Math.random()}`}
       item={foto}
       grid
     />

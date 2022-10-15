@@ -58,8 +58,6 @@ const User = () => {
     dispatch(nextPage())
   }
 
-  console.log(userCollections)
-
   return (
     <>
     <LoadingBar color='#f11946' ref={ref} shadow={true} />
@@ -84,7 +82,7 @@ const User = () => {
     >
       <Grid>
         {(userFotos as UnsplashDataProps[]).map(foto => (
-          <ExploreImage key={`${foto.id}_gridFoto`} item={foto} grid/>
+          <ExploreImage key={`${foto.id}_gridFoto_${Math.random()}`} item={foto} grid/>
         ))}
       </Grid>
     </InfiniteScroll>
