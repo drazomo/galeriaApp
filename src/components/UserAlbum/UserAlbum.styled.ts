@@ -6,7 +6,7 @@ export const ContainerFlexContainer = styled.div`
   margin-top: 2em;
 
   overflow-x: auto;
-  width: 870px;
+  width: 95%;
 
   div{
     margin-right: 0.5em;

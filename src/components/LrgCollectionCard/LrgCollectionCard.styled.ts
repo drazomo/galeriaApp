@@ -26,6 +26,7 @@ export const CollectionCardContainer = styled.div`
 
   .description {
     margin-top: 1em;
+    margin-bottom: 1em;
     width: 92%;
 
     p {
@@ -60,7 +61,20 @@ export const CollectionButtonBar = styled.div`
 display: flex;
 justify-content: space-between;
 width: 780px;
-margin-bottom: 2em;
+margin-bottom: 1em;
+margin-top: 1em;
+
+@media (max-width: ${size.tablet}) {
+    width: 620px;
+}
+
+@media (max-width: ${size.mobileL}) {
+    width: 340px
+}
+
+@media (max-width: ${size.mobileM}) {
+    width: 270px;
+}
 
 @media (max-width: ${size.tablet}) {
     width: 620px
@@ -114,21 +128,21 @@ export const Grid = styled.div`
   }
 
   @media (min-width: ${size.laptop}) {
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 2em;
-  grid-column-gap: 2em;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 2em;
+    grid-column-gap: 2em;
   }
 
   @media (min-width: ${size.tablet}) {
-  grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 2em;
-  grid-column-gap: 2em;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 2em;
+    grid-column-gap: 2em;
   }
   
   @media (min-width: ${size.mobileL}) {
-  grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 1em;
-  grid-column-gap: 1em;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
   }
 `;
 
@@ -185,7 +199,7 @@ margin-right: auto;
 
 @media (max-width: ${size.mobileL}) {
   width: 85%;
-  }
+}
 `
 
 export const InfoUsrContainer = styled.a`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { size, theme } from "../../styles/theme";
 
 export const UserInfoContainer = styled.div`
 display: flex;
@@ -26,6 +26,12 @@ font-weight: 600;
 export const UserLink = styled.a`
 text-decoration: none;
 color: ${theme.colors.textSecondaryGray};
+
+@media (max-width: ${size.mobileL}) {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
 `;
 
 export const StatContainer = styled.div`
