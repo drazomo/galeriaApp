@@ -76,6 +76,19 @@ margin-top: 1em;
     width: 270px;
 }
 
+@media (max-width: ${size.tablet}) {
+    width: 620px
+}
+
+@media (max-width: ${size.mobileL}) {
+    width: 340px
+}
+
+@media (max-width: ${size.mobileM}) {
+    width: 270px;
+    margin-bottom: 16px;
+}
+
 @media (max-width: ${size.mobileS}) {
     width: 270px;
     margin-bottom: 0px;
@@ -114,16 +127,22 @@ export const Grid = styled.div`
     margin-bottom: 1em;
   }
 
-  @media (min-width: ${size.mobileL}) {
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 1.5em;
-  grid-column-gap: 1.5em;
+  @media (min-width: ${size.laptop}) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 2em;
+    grid-column-gap: 2em;
+  }
+
+  @media (min-width: ${size.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 2em;
+    grid-column-gap: 2em;
   }
   
-  @media (max-width: ${size.mobileM}) {
-  grid-template-columns: repeat(2, 1fr);
-  grid-row-gap: 1em;
-  grid-column-gap: 1em;
+  @media (min-width: ${size.mobileL}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 1em;
+    grid-column-gap: 1em;
   }
 `;
 
@@ -178,9 +197,8 @@ margin-right: auto;
   align-items: center;
 }
 
-@media (max-width: ${size.tablet}) {
+@media (max-width: ${size.mobileL}) {
   width: 85%;
-  margin-bottom: 1em;
 }
 `
 
