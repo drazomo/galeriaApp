@@ -166,9 +166,6 @@ ${props => props.imageContainerCSS}
 
 padding-left: 35px;
 padding-right: 35px;
-
-margin-top: 1em;
-margin-bottom: 1.5em;
 `
 
 export const InfoBox = styled.div`
