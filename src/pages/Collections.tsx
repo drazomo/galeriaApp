@@ -55,7 +55,7 @@ const Collections = () => {
     <CardCollectionContainer>
     {showcaseHasData && (
       showcase as CollectionCardProps[]).map(({title, id, preview_photos, cover_photo}: CollectionCardProps) => (
-        <CollectionCard id={id} catName={title} imgUrl={preview_photos[0].urls.regular} key={`collection_${id}`} color={cover_photo?.color}/>
+        <CollectionCard id={id} catName={title} imgUrl={preview_photos[0].urls.regular} key={`${id}_collections${Math.random()}`} color={cover_photo?.color}/>
       )
     )}
     </CardCollectionContainer>
@@ -65,7 +65,7 @@ const Collections = () => {
       {(data as UnsplashDataProps[])?.map((imgData) => {
           return (
             <ExploreImage
-              key={imgData.id} 
+              key={`${imgData.id}_XplrImg_${Math.random()}`} 
               item={imgData}
               portrait={imgData.width < imgData.height}
             />

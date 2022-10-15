@@ -58,7 +58,7 @@ const Search = () => {
   >
   <Grid>
     {collectionResults.map(option => (
-      <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} />
+      <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} key={`${option.id}_searchedCollections_${Math.random()}`} />
     ))}
   </Grid>
   </InfiniteScroll>
@@ -79,7 +79,7 @@ const Search = () => {
   <Grid>
     {photoResults.map(foto =>{ 
       return <ExploreImage
-        key={`${foto.id}_gridSearchCollection`}
+        key={`${foto.id}_gridSearchCollection_${Math.random()}`}
         item={foto}
         grid
       />
