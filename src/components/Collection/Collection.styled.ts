@@ -39,8 +39,7 @@ export const CardTitle = styled.h6`
 export const CardCollectionContainer = styled.div`
   display: flex;
   margin-top: 1em;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 1em;
   min-height: 7.5em;
   overflow-x: auto;
   width: 100%;

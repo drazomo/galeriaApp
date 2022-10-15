@@ -31,6 +31,11 @@ object-fit: cover;
 width: 183px;
 height: 183px;
 border-radius: 8px;
+
+@media (max-width: ${size.mobileS}){
+  width: 140px;
+  height: 140px;
+}
 `;
 
 export const CollectionInfoBx = styled.div`
@@ -52,7 +57,7 @@ p {
 }
 
 @media (max-width: ${size.mobileM}){
-margin-left: 2em;
+margin-left: 1em;
   p {
     display: none;
   }

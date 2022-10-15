@@ -76,22 +76,8 @@ margin-top: 1em;
     width: 270px;
 }
 
-@media (max-width: ${size.tablet}) {
-    width: 620px
-}
-
-@media (max-width: ${size.mobileL}) {
-    width: 340px
-}
-
-@media (max-width: ${size.mobileM}) {
-    width: 270px;
-    margin-bottom: 16px;
-}
-
 @media (max-width: ${size.mobileS}) {
     width: 270px;
-    margin-bottom: 0px;
 }
 
 .likesDiv {
@@ -193,6 +179,10 @@ margin-right: auto;
 
 @media (max-width: ${size.mobileL}) {
   width: 85%;
+}
+
+@media (max-width: ${size.tablet}){
+  margin-bottom: 1em;
 }
 `
 
