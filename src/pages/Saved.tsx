@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import CollectionCard from '../components/Collection/CollectionCards'
-import ExploreImage from '../components/ExploreImage'
 import { Container } from '../components/ExploreImage/ExploreImage.styled'
 import FilterHeader from '../components/FilterHeader'
 import { LinkBtn, LinkItem } from '../components/FilterHeader/FilterHeader.styled'
-import { Grid, SavedGridCollections } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
+import { Grid, ImagePlaceholder, ImgGridArea, ImgGridDiv, Overlay, SavedGridCollections } from '../components/LrgCollectionCard/LrgCollectionCard.styled'
+import PicModal from '../components/PicModal/PicModal'
 import { fetchSavedCollections } from '../features/clientSaved'
 import { UnsplashDataProps } from '../features/feed'
 import { CollectionCardProps } from '../features/showcaseFeed'
@@ -16,6 +16,16 @@ const Saved = () => {
   const dispatch = useAppDispatch()
   const { selectedCollections, selectedPhotos } = useAppSelector(state => state.clientSaved)
   const [checked, setChecked] = useState('photos')
+  const [modalOpen, setModalOpen] = useState(false)
+  const [opacity, setOpacity] = useState(1);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   useEffect(() => {
     dispatch(fetchSavedCollections())
@@ -23,14 +33,6 @@ const Saved = () => {
 
   const filteredCollections = (Object.values(selectedCollections) as CollectionCardProps[]).map(option => (
     <CollectionCard catName={option.title as string} imgUrl={option.preview_photos[0].urls.regular} id={option.id} key={option.id + 'colCard' + Math.random()}/>
-  ))
-
-  const filteredPhotos = (Object.values(selectedPhotos) as UnsplashDataProps[]).map(foto => (
-    <ExploreImage
-      key={`${foto.id}_gridSavedCollection_${Math.random()}`}
-      item={foto}
-      grid
-    />
   ))
 
   const handleLinkBtnClick = (value: string) => {
@@ -60,7 +62,30 @@ const Saved = () => {
       </FilterHeader>
       <Container>
         {
-          checked === 'photos' ? <Grid>{filteredPhotos}</Grid> : <SavedGridCollections>{filteredCollections}</SavedGridCollections>
+          checked === 'photos' ? 
+          <Grid>
+            {(Object.values(selectedPhotos) as UnsplashDataProps[]).map(foto => (
+            <>
+            <PicModal item={foto} onClose={closeModal} open={modalOpen}/>
+            <ImgGridDiv hoverEffect={true} key={`xloprGrid_${foto.id}`} onClick={showModal}>
+            <ImagePlaceholder opacity={opacity} placeholderColor={foto.color as string}/>
+              <Overlay>
+                <p>
+                  {foto.likes} likes
+                </p>
+              </Overlay>
+              <ImgGridArea
+                src={foto.urls.regular}
+                alt={foto.description}
+                imageCSS={{objectFit: 'cover'}}
+                onLoad={() => setOpacity(0)}
+              />
+            </ImgGridDiv>
+            </>
+          ))}
+          </Grid> 
+          : 
+          <SavedGridCollections>{filteredCollections}</SavedGridCollections>
         }
       </Container>
     </Container>
