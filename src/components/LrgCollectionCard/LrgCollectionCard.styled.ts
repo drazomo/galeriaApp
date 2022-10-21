@@ -95,6 +95,9 @@ export const ImgArea = styled.img<DisplayImageProps>`
   border-radius: 8px;
   min-width: 100%;
   object-fit: cover;
+  transition: .5s ease;
+  backface-visibility: hidden;
+
   ${(props) => props.imageCSS}
 `;
 
