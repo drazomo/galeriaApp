@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/Front-end-important?style=plastic&labelColor=inactive)
 
 
-**Link to project this project (current): [Galería App](https://unsplashgaleria.netlify.app/)
+**Link to project this project (current): [Galería App](https://unsplashgaleria.netlify.app/) <br>
 **[Mock-up](https://drive.google.com/file/d/1AKf5StDHw746qgK_trUNmB5K6yoFW7TO/view?usp=sharing)
 
 ## DEMO
