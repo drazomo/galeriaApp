@@ -5,7 +5,8 @@
 ![](https://img.shields.io/badge/Front-end-important?style=plastic&labelColor=inactive)
 
 
-**Link to project this project (current):** TBA <br>
+**Link to project this project (current): [Galería App](https://unsplashgaleria.netlify.app/)
+**[Mock-up](https://drive.google.com/file/d/1AKf5StDHw746qgK_trUNmB5K6yoFW7TO/view?usp=sharing)
 
 ## DEMO
 
@@ -21,8 +22,9 @@ An instagram-like single page application where users can view, search and save 
 
 ## Features ✨✨✨
 The features of the `Galería` app are -
-- A home page that displays popular photos daily.
-- Users are able to
+⭐ A home page that displays popular photos daily.
+⭐ Image onLoad Skeletons
+⭐ Users are able to
     * Search Photos & Collections
     * Favorite and Save Photos
     * Download Photo
@@ -32,9 +34,8 @@ The features of the `Galería` app are -
 <br>
 
 ## Optimizations
-
-требало би да будете сигурни да се у средини текста не крије нека сакривена или срамотна порука. Сви Lorem Ipsum генератори који се могу наћи на Интернету су направљени да понављају предходно дефинисане делове, што чини овај генератор првим правим на Интернету. Он користи речник од 200 латинских речи које су комбиноване са подоста шаблона реченица како би генерисао Lorem Ipsum који изгледа уверљиво. То значи да овде генерисани Lorem Ipsum не садржи понављање, нема убачен хумор или неке неочекиване речи и тако даље.
-
+🔧 User Accounts & Authnetication for access to saved photos
+🔧 Unit testing & Intergration Testing
 
 <br>
 
@@ -51,10 +52,8 @@ The features of the `Galería` app are -
 
 ## Lessons Learned:
 
-✅ Не постоји нико ко воли бол, ко га тражи и жели, једноставно зато што је бол. <br>
-✅ Не постоји нико ко воли бол, ко га тражи и жели, једноставно зато што је бол. <br>
-✅ Не постоји нико ко воли бол, ко га тражи и жели, једноставно зато што је бол. <br>
-✅ Не постоји нико ко воли бол, ко га тражи и жели, једноставно зато што је бол. <br>
+✅ Create a modal via ReactDOM.createPortal. <br>
+✅ Skeleton for images. <br>
 
 
 <br>
@@ -63,24 +62,33 @@ The features of the `Galería` app are -
 The list of dependencies used in the frontend are :
 
 ```javascript
-    "@testing-library/jest-dom"
-    "@testing-library/react"
+    "@bakunya/react-masonry"
+    "@reduxjs/toolkit"
     "react"
     "react-dom"
-    "next"
+    "react-infinite-scroll-component"
+    "react-masonry-css"
     "react-redux"
-    "@reduxjs/toolkit"
-    "@emotion/react"
-    "@emotion/styled"
+    "react-router-dom"
+    "react-scripts"
+    "react-spinners"
+    "react-top-loading-bar"
     "styled-components"
     "typescript"
-   
+    "web-vitals"
 ```
 The list of dependencies used for code quality and test are :
 
 ```javascript
     "@testing-library/jest-dom"
     "@testing-library/react"
+    "@testing-library/user-event"
+    "@types/jest"
+    "@types/node"
+    "@types/react"
+    "@types/react-dom"
+    "@types/styled-components"
+    "cypress"
 ```
 
 <br>
