@@ -68,7 +68,6 @@ const Collection = () => {
               key={`${foto.id}_gridCollection_${Math.random()}`}
               item={foto}
               grid
-              hover
             />
           ))}
         </Grid>
