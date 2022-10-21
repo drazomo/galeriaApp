@@ -21,32 +21,32 @@ An instagram-like single page application where users can view, search and save 
 <br>
 
 ## Features ✨✨✨
-The features of the `Galería` app are -
-⭐ A home page that displays popular photos daily.
-⭐ Image onLoad Skeletons
-⭐ Users are able to
-    * Search Photos & Collections
-    * Favorite and Save Photos
-    * Download Photo
-    * View Artists & Other user's collection
-    * View Photo's Likes
+The features of the `Galería` app are - <br>
+⭐ A home page that displays popular photos daily. <br>
+⭐ Image onLoad Skeletons <br>
+⭐ Users are able to <br>
+    * Search Photos & Collections <br>
+    * Favorite and Save Photos <br>
+    * Download Photo <br>
+    * View Artists & Other user's collection <br>
+    * View Photo's Likes <br>
 
 <br>
 
 ## Optimizations
-🔧 User Accounts & Authnetication for access to saved photos
-🔧 Unit testing & Intergration Testing
+🔧 User Accounts & Authnetication for access to saved photos <br>
+🔧 Unit testing & Intergration Testing <br>
 
 <br>
 
 ## How to run 🚀🚀🚀
-* First, copy the url of this project
-* Then open your terminal on your local computer and -
-    - navigate to the location you want to create the project in (eg - home or c:/)
-    - enter the command `git clone <url-of-this-project>`. Alternatively, you can provide the name of the folder you want git to clone the project to with `git clone <url-of-this-project> <name-of-folder>`
-    - `cd` into the project folder
-    - Run `npm install` to install the packages for the frontend
-    - Run `npm run dev` to start the development server
+* First, copy the url of this project <br>
+* Then open your terminal on your local computer and - <br>
+    - navigate to the location you want to create the project in (eg - home or c:/) <br>
+    - enter the command `git clone <url-of-this-project>`. Alternatively, you can provide the name of the folder you want git to clone the project to with `git clone  <url-of-this-project> <name-of-folder>` <br>
+    - `cd` into the project folder <br>
+    - Run `npm install` to install the packages for the frontend <br>
+    - Run `npm run dev` to start the development server <br>
 
 <br>
 
