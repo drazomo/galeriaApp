@@ -46,14 +46,13 @@ const ExploreImage = ({item, grid, imageCSS, portrait}:ExploreImageProps) => {
       :
     <LrgCollectionCard item={item} key={`xloprLrgCrd_${item.id}`}>
       <PicModal item={item} onClose={closeModal} open={modalOpen}/>
-      <ImgArea 
-        src={item.urls.regular} 
-        alt={item.description}
-        onClick={showModal}
-        imageCSS={portrait ? portraitImageCSS : defaultImageCSS}
-        onLoad={() => setOpacity(0)}
-      />
-      <ImagePlaceholder opacity={opacity} placeholderColor={item.color as string}/>
+        <ImagePlaceholder opacity={opacity} placeholderColor={item.color as string} onClick={showModal}/>
+        <ImgArea 
+          src={item.urls.regular} 
+          alt={item.description}
+          imageCSS={portrait ? portraitImageCSS : defaultImageCSS}
+          onLoad={() => setOpacity(0)}
+        />
     </LrgCollectionCard>
   )
 }
