@@ -10,7 +10,7 @@
 
 ## DEMO
 
-![site gif demo](./demo.gif)
+![site gif demo](./galeria_demo.gif)
 
 <br>
 
