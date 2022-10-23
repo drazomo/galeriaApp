@@ -14,7 +14,7 @@
 
 <br>
 
-## Overview
+## Overview 🕶🕶🕶
 
 An instagram-like single page application where users can view, search and save photos.
 
@@ -33,7 +33,7 @@ The features of the `Galería` app are - <br>
 
 <br>
 
-## Optimizations
+## Optimizations 🔧🔧🔧
 🔧 User Accounts & Authnetication for access to saved photos <br>
 🔧 Unit testing & Intergration Testing <br>
 
