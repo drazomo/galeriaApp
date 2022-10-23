@@ -54,7 +54,8 @@ The features of the `Galería` app are - <br>
 
 ✅ Create a modal via ReactDOM.createPortal. <br>
 ✅ Skeleton for images. <br>
-
+✅ Giving props to created custom components. <br>
+✅ Provide predetermined sizes in styled-components. <br>
 
 <br>
 
