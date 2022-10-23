@@ -50,7 +50,7 @@ The features of the `Galería` app are - <br>
 
 <br>
 
-## Lessons Learned:
+## Lessons Learned 🏫🏫🏫
 
 ✅ Create a modal via ReactDOM.createPortal. <br>
 ✅ Skeleton for images. <br>
