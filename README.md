@@ -98,7 +98,7 @@ The list of dependencies used for code quality and test are :
 ## Where to find more:
 
 **Personal Website:** https://markrasavong.com/ <br>
-**Galería App Repository:** https://github.com/MarkRasavong/galeriaApp <br>
-**My Github Repositories:** https://github.com/MarkRasavong?tab=repositories <br>
+**Galería App Repository:** https://github.com/drazomo/galeriaApp <br>
+**My Github Repositories:** https://github.com/drazomo?tab=repositories <br>
 **Email:** rasavong.mark@gmail.com <br>
-**Mobile / WhatsApp:** +34 666 996 519
+**Mobile / WhatsApp:** +1 661 606 0866 / +34 666 996 519
